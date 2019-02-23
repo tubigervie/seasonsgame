@@ -19,14 +19,14 @@ public class IcePillar : MonoBehaviour, IFlammable
     {
         if (other.gameObject.layer == 9 && rigid.bodyType != RigidbodyType2D.Static)
         {
-            if(other.gameObject.GetComponent<IcePillar>() == null)
-            {
+            //if(other.gameObject.GetComponent<IcePillar>() == null)
+            //{
                 rigid.velocity = Vector2.zero;
                 BoxCollider2D collider = GetComponent<BoxCollider2D>();
                 collider.isTrigger = false;
                 rigid.bodyType = RigidbodyType2D.Static;
                 Destroy(this.gameObject, 10f);
-            }
+            //}
         }
     }
 

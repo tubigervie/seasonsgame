@@ -16,20 +16,22 @@ public class Player : MonoBehaviour
     float accelerationTimeGrounded = .1f;
     float moveSpeed = 6;
     float gravity;
-    float maxJumpVelocity;
+    public float maxJumpVelocity;
     float minJumpVelocity;
-    Vector3 velocity;
+    public Vector3 velocity;
     float velocityXSmoothing;
 
     float stanceSwitchCooldownTimer;
     float stanceSwitchCooldown = 3f;
 
-    PlayerController controller;
+    public PlayerController controller;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] GameObject icePillarPrefab;
     [SerializeField] GameObject fireConePrefab;
+    [SerializeField] GameObject windZonePrefab;
 
     [SerializeField] StanceType stance;
+    int maxWindZones = 2;
 
     private void Start()
     {
@@ -56,7 +58,12 @@ public class Player : MonoBehaviour
     void HandlePlayerMovement()
     {
         if (controller.collisions.above || controller.collisions.below)
+        {
+            if(WindColumn.windColumnCount > 0)
+                WindColumn.DecrementWindCount();
             velocity.y = 0;
+        }
+
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (input.x > 0)
@@ -64,6 +71,16 @@ public class Player : MonoBehaviour
         else if (input.x < 0)
             sprite.flipX = true;
 
+        HandleJump();
+
+        float targetVelocityX = input.x * moveSpeed;
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void HandleJump()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
             velocity.y = maxJumpVelocity;
 
@@ -72,11 +89,6 @@ public class Player : MonoBehaviour
             if (velocity.y > minJumpVelocity)
                 velocity.y = minJumpVelocity;
         }
-
-        float targetVelocityX = input.x * moveSpeed;
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
     }
 
     void HandleStanceSwitch()
@@ -139,6 +151,13 @@ public class Player : MonoBehaviour
                 }
                 break;
             case StanceType.fall:
+                if (Input.GetButtonDown("Fire1") && (WindColumn.windColumnCount < maxWindZones))
+                {
+                    Vector2 targetPosition = transform.position;
+                    targetPosition.y -= .38f;
+                    Instantiate(windZonePrefab, targetPosition, Quaternion.identity);
+                    WindColumn.windColumnCount++;
+                }
                 break;
         }
     }

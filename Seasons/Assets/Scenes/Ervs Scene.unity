@@ -471,6 +471,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4956737894649587011}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &432342943 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4956737894771024604, guid: ceaccc7e7233d11478851665f0dab243,
+    type: 3}
+  m_PrefabInstance: {fileID: 4956737894649587011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &432342944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4956737894771024611, guid: ceaccc7e7233d11478851665f0dab243,
@@ -2383,7 +2389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351938497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.86, z: 0}
+  m_LocalPosition: {x: -2.89, y: -0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 859187095}
@@ -2423,10 +2429,15 @@ MonoBehaviour:
   maxJumpHeight: 3
   minJumpHeight: 0.2
   timeToJumpApex: 0.35
+  maxJumpVelocity: 0
+  velocity: {x: 0, y: 0, z: 0}
+  controller: {fileID: 0}
   sprite: {fileID: 859187096}
   icePillarPrefab: {fileID: 2097459006840819399, guid: c2ca69a8ecfb2af458c8d49a7e79c8bc,
     type: 3}
   fireConePrefab: {fileID: 432342942}
+  windZonePrefab: {fileID: 5312165501467005597, guid: 4026ea09cbf7e10448b6f2d6541aba8d,
+    type: 3}
   stance: 0
 --- !u!1 &1393964901
 GameObject:
@@ -3401,5 +3412,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7616478382759267223, guid: ceaccc7e7233d11478851665f0dab243,
+        type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 432342943}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceaccc7e7233d11478851665f0dab243, type: 3}
