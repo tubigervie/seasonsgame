@@ -5,9 +5,16 @@ using UnityEngine;
 public class IcePillar : MonoBehaviour, IFlammable
 {
     Rigidbody2D rigid;
+    SpriteRenderer sprite;
+    BoxCollider2D collider;
+
     public float projectileSpeed = 5f;
     public void Init(bool isLeft = false)
     {
+        sprite = GetComponent<SpriteRenderer>();
+        collider = GetComponent<BoxCollider2D>();
+        collider.offset = (isLeft) ? new Vector2(collider.offset.x * -1, 0) : collider.offset;
+        sprite.flipX = isLeft;
         rigid = GetComponent<Rigidbody2D>();
         if (isLeft)
             rigid.velocity = (-transform.right * projectileSpeed);

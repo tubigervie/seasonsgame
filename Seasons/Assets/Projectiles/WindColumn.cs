@@ -20,7 +20,7 @@ public class WindColumn : MonoBehaviour
 
     private void Start()
     {
-        durationTimer = 3f;
+        durationTimer = .3f;
         windPool.Add(this);
     }
 

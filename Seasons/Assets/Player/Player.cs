@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     float velocityXSmoothing;
 
     float stanceSwitchCooldownTimer;
-    float stanceSwitchCooldown = 3f;
+    float stanceSwitchCooldown = .5f;
 
     public PlayerController controller;
     [SerializeField] SpriteRenderer sprite;
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject windZonePrefab;
 
     [SerializeField] StanceType stance;
-    int maxWindZones = 2;
+    int maxWindZones = 1;
 
     private void Start()
     {
