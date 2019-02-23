@@ -187,6 +187,7 @@ public class PlayerController : MonoBehaviour
             HorizontalCollisions(ref velocity);
         if(velocity.y != 0)
             VerticalCollisions(ref velocity);
+        Debug.Log(velocity);
         transform.Translate(velocity);
     }
 

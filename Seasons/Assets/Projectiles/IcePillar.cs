@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IcePillar : MonoBehaviour
+public class IcePillar : MonoBehaviour, IFlammable
 {
     Rigidbody2D rigid;
     public float projectileSpeed = 5f;
@@ -28,5 +28,10 @@ public class IcePillar : MonoBehaviour
                 Destroy(this.gameObject, 10f);
             }
         }
+    }
+
+    public void Burn()
+    {
+        Destroy(this.gameObject);
     }
 }

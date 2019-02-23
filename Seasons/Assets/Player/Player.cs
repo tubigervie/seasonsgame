@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     PlayerController controller;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] GameObject icePillarPrefab;
+    [SerializeField] GameObject fireConePrefab;
 
     [SerializeField] StanceType stance;
 
@@ -100,13 +101,45 @@ public class Player : MonoBehaviour
 
     void HandleSpellCasting()
     {
-        if(Input.GetButtonDown("Fire1"))
+        switch (stance)
         {
-            Vector2 targetPosition = transform.position;
-            float x = (sprite.flipX) ? -1f : 1f;
-            targetPosition.x += x;
-            var icePillar = Instantiate(icePillarPrefab, targetPosition, Quaternion.identity);
-            icePillar.GetComponent<IcePillar>().Init(sprite.flipX);
+            case StanceType.neutral:
+                break;
+            case StanceType.winter:
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    Vector2 targetPosition = transform.position;
+                    float directionX = (sprite.flipX) ? -1f : 1f;
+                    targetPosition.x += directionX;
+                    var icePillar = Instantiate(icePillarPrefab, targetPosition, Quaternion.identity);
+                    icePillar.GetComponent<IcePillar>().Init(sprite.flipX);
+                }
+                break;
+            case StanceType.spring:
+                break;
+            case StanceType.summer:
+                if(Input.GetButtonDown("Fire1"))
+                {                  
+                    if (!fireConePrefab.activeInHierarchy)
+                        fireConePrefab.SetActive(true);              
+                }
+                else if(Input.GetButtonUp("Fire1"))
+                {
+                    if (fireConePrefab.activeInHierarchy)
+                        fireConePrefab.SetActive(false);
+                }
+
+                if(fireConePrefab.activeInHierarchy)
+                {
+                    Vector2 targetPosition = Vector3.zero;
+                    float directionX = (sprite.flipX) ? -1f : 1f;
+                    targetPosition.x += directionX;
+                    fireConePrefab.transform.localPosition = targetPosition;
+                    fireConePrefab.GetComponent<FireCone>().sprite.flipX = sprite.flipX;
+                }
+                break;
+            case StanceType.fall:
+                break;
         }
     }
 
