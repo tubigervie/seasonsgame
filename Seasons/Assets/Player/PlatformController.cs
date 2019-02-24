@@ -2,16 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ How to use:
+ Drag a moving platform prefab onto the scene.
+ Set however many waypoints you would like using the local waypoints
+ tab on the editor.
+ In scene view you can see a visualization of where each waypoint is at
+ marked by the blue crosshairs
+
+ You don't need to worry about readjusting the waypoints upon moving the platform
+ as they are local to the platform.
+
+ Adjust the speed with the speed variable and wait time between waypoints with 
+ wait time
+
+ Ease amount is if you want to adjust acceleration and deceleration of the moving
+ platform
+
+ Finally check cyclic if you want to cycle through the way points
+ ex. waypoint 1 -> wayp 2 -> wayp3 -> wayp1 -> ...
+ if cyclic = false
+ waypoints would go like this:
+ wayp1 -> wayp 2 -> wayp3 -> wayp2 -> wayp 1 -> wayp2 -> ...
+ */
+
 public class PlatformController : Raycaster
 {
-    public LayerMask passengerMask;
-    public Vector3[] localWaypoints;
+    [SerializeField] LayerMask passengerMask;
+    [SerializeField] Vector3[] localWaypoints;
     Vector3[] globalWaypoints;
-    public float speed;
-    public float waitTime;
+    [SerializeField] float speed;
+    [SerializeField] float waitTime;
     [Range(0, 2)]
-    public float easeAmount;
-    public bool cyclic;
+    [SerializeField] float easeAmount;
+    [SerializeField] bool cyclic;
     int fromWaypointIndex;
     float valueBetweenWaypoints;
     float _waitTime;
@@ -19,6 +43,7 @@ public class PlatformController : Raycaster
     List<PassengerMovement> passengerMoveList;
     Dictionary<Transform, PlayerController> passengerDict = new Dictionary<Transform, PlayerController>();
     // Start is called before the first frame update
+
     public override void Start()
     {
         base.Start();

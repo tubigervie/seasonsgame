@@ -9,22 +9,20 @@ public enum StanceType
 public class Player : MonoBehaviour
 {
     [Header("Jump Stats")]
-    public float maxJumpHeight = 4;
-    public float minJumpHeight = .25f;
-    public float timeToJumpApex = .4f;
+    [SerializeField] float maxJumpHeight = 4;
+    [SerializeField] float minJumpHeight = .25f;
+    [SerializeField] float timeToJumpApex = .4f;
 
     float grappleDistance = 4;
     float accelerationTimeAirborne = .2f;
     float accelerationTimeGrounded = .1f;
     float moveSpeed = 6;
     float gravity;
-    public float maxJumpVelocity;
-    float minJumpVelocity;
-    public Vector3 velocity;
     float velocityXSmoothing;
-    public GameObject vineGrapplePointObject;
-    public ParticleSystem smokeParticles;
-    public GameObject leavesParticles;
+    float minJumpVelocity;
+    public float maxJumpVelocity;
+
+    public Vector3 velocity;
 
     float stanceSwitchCooldownTimer;
     float stanceSwitchCooldown = .5f;
@@ -36,6 +34,9 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject fireConePrefab;
     [SerializeField] GameObject windZonePrefab;
     [SerializeField] LineRenderer vine;
+    public GameObject vineGrapplePointObject;
+    [SerializeField] ParticleSystem smokeParticles;
+    [SerializeField] GameObject leavesParticles;
 
     [SerializeField] StanceType stance;
     int maxWindZones = 1;
