@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     float velocityXSmoothing;
     public GameObject vineGrapplePointObject;
     public ParticleSystem smokeParticles;
+    public GameObject leavesParticles;
 
     float stanceSwitchCooldownTimer;
     float stanceSwitchCooldown = .5f;
@@ -195,8 +196,12 @@ public class Player : MonoBehaviour
                 if (Input.GetButtonDown("Fire1") && (WindColumn.windColumnCount < maxWindZones))
                 {
                     Vector2 targetPosition = transform.position;
-                    targetPosition.y -= .38f;
                     Instantiate(windZonePrefab, targetPosition, Quaternion.identity);
+                    Vector3 targetParticlePos = targetPosition;
+                    targetParticlePos.y += .05f;
+                    targetParticlePos.z += .369f;
+                    GameObject particles = Instantiate(leavesParticles, targetParticlePos, Quaternion.identity);
+                    Destroy(particles, 3f);
                     WindColumn.windColumnCount++;
                 }
                 break;
@@ -226,18 +231,18 @@ public class Player : MonoBehaviour
     {
         Physics2D.SyncTransforms();
         RaycastHit2D vineGrapplePoint = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, controller.collisionMask);
-        float distance = Vector3.Distance(vineGrapplePoint.point, transform.position);
         if (vineGrapplePoint.collider != null)
         {
+            float distance = Vector3.Distance(vineGrapplePoint.collider.transform.position, transform.position);
             vineGrapplePointObject = vineGrapplePoint.collider.gameObject;
             if (distance < grappleDistance)
             {
                 vine.SetPosition(0, transform.position);
-                vine.SetPosition(1, vineGrapplePoint.point);
+                vine.SetPosition(1, vineGrapplePointObject.transform.position);
                 vine.enabled = true;
                 controller.freeze = true;
                 //Play animation or sprite swap here
-                Vector3 hit3d = vineGrapplePoint.point;
+                Vector3 hit3d = vineGrapplePointObject.transform.position;
                 Vector3 dir = hit3d - transform.position;
                 if (dir.normalized.x < 0)
                     sprite.flipX = true;
@@ -249,7 +254,7 @@ public class Player : MonoBehaviour
             controller.freeze = false;
             while (vineGrapplePointObject != null)
             {
-                distance = Vector3.Distance(vineGrapplePoint.point, transform.position);
+                distance = Vector3.Distance(vineGrapplePointObject.transform.position, transform.position);
 
                 if (distance < .1f)
                 {
@@ -262,10 +267,10 @@ public class Player : MonoBehaviour
                 else if (distance < grappleDistance)
                 {
                     vine.SetPosition(0, transform.position);
-                    vine.SetPosition(1, vineGrapplePoint.point);
+                    vine.SetPosition(1, vineGrapplePointObject.transform.position);
                     vine.enabled = true;
 
-                    Vector3 hit3d = vineGrapplePoint.point;
+                    Vector3 hit3d = vineGrapplePointObject.transform.position;
                     Vector3 dir = hit3d - transform.position;
                     velocity = dir.normalized * 15f;
                 }

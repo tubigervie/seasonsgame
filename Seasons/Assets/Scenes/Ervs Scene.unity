@@ -1602,6 +1602,8 @@ MonoBehaviour:
   velocity: {x: 1, y: 0, z: 0}
   vineGrapplePointObject: {fileID: 0}
   smokeParticles: {fileID: 997707923}
+  leavesParticles: {fileID: 6917417739535995691, guid: beb8e902228e69643b4d7f6c70310ee7,
+    type: 3}
   controller: {fileID: 0}
   sprite: {fileID: 859187096}
   icePillarPrefab: {fileID: 2097459006840819399, guid: c2ca69a8ecfb2af458c8d49a7e79c8bc,
