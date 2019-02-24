@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public enum StanceType
 {
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     public float minJumpHeight = .25f;
     public float timeToJumpApex = .4f;
 
+    float grappleDistance = 5;
     float accelerationTimeAirborne = .2f;
     float accelerationTimeGrounded = .1f;
     float moveSpeed = 6;
@@ -20,25 +22,37 @@ public class Player : MonoBehaviour
     float minJumpVelocity;
     public Vector3 velocity;
     float velocityXSmoothing;
+    public GameObject vineGrapplePointObject;
 
     float stanceSwitchCooldownTimer;
     float stanceSwitchCooldown = .5f;
+    bool canGrapple;
 
     public PlayerController controller;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] GameObject icePillarPrefab;
     [SerializeField] GameObject fireConePrefab;
     [SerializeField] GameObject windZonePrefab;
+    [SerializeField] LineRenderer vine;
 
     [SerializeField] StanceType stance;
     int maxWindZones = 1;
+
+    public static Player singleton;
+
+    private void Awake()
+    {
+        singleton = this;
+    }
 
     private void Start()
     {
         controller = GetComponent<PlayerController>();
         gravity = -(2 * maxJumpHeight) / (timeToJumpApex * timeToJumpApex);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-        minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);     
+        minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+        vine.enabled = false;
+        vine.useWorldSpace = true;
     }
 
 
@@ -106,6 +120,8 @@ public class Player : MonoBehaviour
             stance = StanceType.fall;
         if(stance != prevStance)
         {
+            if (fireConePrefab.activeInHierarchy)
+                fireConePrefab.SetActive(false);
             UpdateStance(stance);
             stanceSwitchCooldownTimer = stanceSwitchCooldown;
         }
@@ -128,6 +144,17 @@ public class Player : MonoBehaviour
                 }
                 break;
             case StanceType.spring:
+                if (Input.GetMouseButtonDown(0) && canGrapple)
+                {
+                    StartCoroutine("Swing");                  
+                }
+                else if(Input.GetMouseButtonUp(0))
+                {
+                    canGrapple = true;
+                    velocity = Vector3.zero;
+                    vine.enabled = false;
+                    vineGrapplePointObject = null;
+                }
                 break;
             case StanceType.summer:
                 if(Input.GetButtonDown("Fire1"))
@@ -178,6 +205,52 @@ public class Player : MonoBehaviour
             case StanceType.fall:
                 sprite.color = Color.yellow;
                 break;
+        }
+    }
+
+    IEnumerator Swing()
+    {
+        RaycastHit2D vineGrapplePoint = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, controller.collisionMask);
+
+        if (vineGrapplePoint.collider != null)
+            vineGrapplePointObject = vineGrapplePoint.collider.gameObject;
+
+        while (vineGrapplePointObject != null)
+        {
+            float distance = Vector3.Distance(vineGrapplePoint.point, transform.position);
+
+            if (distance < .1f)
+            {
+                canGrapple = false;
+                velocity = Vector3.zero;
+                Debug.Log("Break grapple");
+                vineGrapplePointObject = null;
+                vine.enabled = false;
+            }
+            else if (distance < grappleDistance)
+            {
+                vine.SetPosition(0, transform.position);
+                vine.SetPosition(1, vineGrapplePoint.point);
+                vine.enabled = true;
+                
+                Vector3 hit3d = vineGrapplePoint.point;
+                Vector3 dir = hit3d - transform.position;
+                if (dir.normalized.x < 0)
+                    sprite.flipX = true;
+                else
+                    sprite.flipX = false;
+                velocity = dir.normalized * 10f;
+            }
+
+            if (vineGrapplePointObject != null && (controller.collisions.above || controller.collisions.right || controller.collisions.left))
+            {
+                vineGrapplePointObject = null;
+                vine.enabled = false;
+                canGrapple = false;
+                velocity = Vector3.zero;
+            }
+
+            yield return null;
         }
     }
 }

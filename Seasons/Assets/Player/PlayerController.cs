@@ -16,9 +16,9 @@ public class PlayerController : MonoBehaviour
     float verticalRaySpacing;
 
     BoxCollider2D collider;
-    Rigidbody2D rigid;
+    public Rigidbody2D rigid;
     RaycastTargets raycastTargets;
-    public CollisionInfo collisions;
+    [SerializeField] public CollisionInfo collisions;
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +80,8 @@ public class PlayerController : MonoBehaviour
 
     void ClimbSlope(ref Vector3 velocity, float slopeAngle)
     {
+        if (Player.singleton.vineGrapplePointObject != null)
+            return;
         float moveDistance = Mathf.Abs(velocity.x);
         float climbVelocityY = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
         if(velocity.y > climbVelocityY)
@@ -98,6 +100,8 @@ public class PlayerController : MonoBehaviour
 
     void DescendSlope(ref Vector3 velocity)
     {
+        if (Player.singleton.vineGrapplePointObject != null)
+            return;
         float directionX = Mathf.Sign(velocity.x);
         Vector2 rayOrigin = (directionX == -1) ? raycastTargets.bottomRight : raycastTargets.bottomLeft;
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, -Vector2.up, Mathf.Infinity, collisionMask);
@@ -187,7 +191,6 @@ public class PlayerController : MonoBehaviour
             HorizontalCollisions(ref velocity);
         if(velocity.y != 0)
             VerticalCollisions(ref velocity);
-        Debug.Log(velocity);
         transform.Translate(velocity);
     }
 
