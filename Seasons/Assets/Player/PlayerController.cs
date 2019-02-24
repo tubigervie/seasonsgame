@@ -2,30 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Raycaster
 {
-    public LayerMask collisionMask;
-    const float skinWidth = .015f;
-    public int horizontalRayCount = 4;
-    public int verticalRayCount = 4;
-
     float maxClimbAngle = 80;
     float maxDescendAngle = 75;
     public bool freeze;
-    float horizontalRaySpacing;
-    float verticalRaySpacing;
-
-    BoxCollider2D collider;
-    public Rigidbody2D rigid;
-    RaycastTargets raycastTargets;
     [SerializeField] public CollisionInfo collisions;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
-        CalculateRaySpacing();
+        base.Start();
     }
 
     // Update is called once per frame
@@ -41,10 +28,13 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 rayOrigin = (directionX == -1) ? raycastTargets.bottomLeft : raycastTargets.bottomRight;
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+            Physics2D.SyncTransforms();
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
             Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
             if (hit)
             {
+                if (hit.distance == 0)
+                    continue;
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
                 if(i == 0 && slopeAngle <= maxClimbAngle)
                 {
@@ -104,6 +94,7 @@ public class PlayerController : MonoBehaviour
             return;
         float directionX = Mathf.Sign(velocity.x);
         Vector2 rayOrigin = (directionX == -1) ? raycastTargets.bottomRight : raycastTargets.bottomLeft;
+        Physics2D.SyncTransforms();
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, -Vector2.up, Mathf.Infinity, collisionMask);
 
         if(hit)
@@ -137,6 +128,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 rayOrigin = (directionY == -1) ? raycastTargets.bottomLeft : raycastTargets.topLeft;
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
+            Physics2D.SyncTransforms();
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
 
             Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
@@ -160,6 +152,7 @@ public class PlayerController : MonoBehaviour
                 float directionX = Mathf.Sign(velocity.x);
                 rayLength = Mathf.Abs(velocity.x) + skinWidth;
                 Vector2 ray2Origin = ((directionX == -1) ? raycastTargets.bottomLeft : raycastTargets.topLeft) + Vector2.up * velocity.y;
+                Physics2D.SyncTransforms();
                 RaycastHit2D hit2 = Physics2D.Raycast(ray2Origin, Vector2.right * directionX, rayLength, collisionMask);
 
                 if(hit2)
@@ -176,7 +169,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Move(Vector3 velocity)
+    public void Move(Vector3 velocity, bool standingOnPlatform = false)
     {
         UpdateRaycastTargets();
         collisions.Reset();
@@ -194,38 +187,11 @@ public class PlayerController : MonoBehaviour
         if (freeze)
             velocity = Vector2.zero;
         transform.Translate(velocity);
+
+        if (standingOnPlatform)
+            collisions.below = true;
     }
-
-    void CalculateRaySpacing()
-    {
-        Bounds bounds = collider.bounds;
-        bounds.Expand(skinWidth * -2);
-
-        horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
-        verticalRayCount = Mathf.Clamp(verticalRayCount, 2, int.MaxValue);
-
-        horizontalRaySpacing = bounds.size.y / (horizontalRayCount - 1);
-        verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);
-    }
-
-    void UpdateRaycastTargets()
-    {
-        Bounds bounds = collider.bounds;
-        bounds.Expand(skinWidth * -2);
-
-        raycastTargets.topLeft = new Vector2(bounds.min.x, bounds.max.y);
-        raycastTargets.topRight = new Vector2(bounds.max.x, bounds.max.y);
-        raycastTargets.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
-        raycastTargets.bottomRight = new Vector2(bounds.max.x, bounds.min.y);
-    }
-
-    struct RaycastTargets
-    {
-        public Vector2 topLeft;
-        public Vector2 topRight;
-        public Vector2 bottomLeft;
-        public Vector2 bottomRight;
-    }
+ 
 
     public struct CollisionInfo
     {

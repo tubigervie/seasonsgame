@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public float minJumpHeight = .25f;
     public float timeToJumpApex = .4f;
 
-    float grappleDistance = 5;
+    float grappleDistance = 4;
     float accelerationTimeAirborne = .2f;
     float accelerationTimeGrounded = .1f;
     float moveSpeed = 6;
@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public Vector3 velocity;
     float velocityXSmoothing;
     public GameObject vineGrapplePointObject;
+    public ParticleSystem smokeParticles;
 
     float stanceSwitchCooldownTimer;
     float stanceSwitchCooldown = .5f;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] StanceType stance;
     int maxWindZones = 1;
+    float vineTimer;
 
     public static Player singleton;
 
@@ -122,6 +124,7 @@ public class Player : MonoBehaviour
         {
             if (fireConePrefab.activeInHierarchy)
                 fireConePrefab.SetActive(false);
+            smokeParticles.emissionRate = 0;
             UpdateStance(stance);
             stanceSwitchCooldownTimer = stanceSwitchCooldown;
         }
@@ -139,6 +142,7 @@ public class Player : MonoBehaviour
                     Vector2 targetPosition = transform.position;
                     float directionX = (sprite.flipX) ? -1f : 1f;
                     targetPosition.x += directionX;
+                    //play sprite animation
                     var icePillar = Instantiate(icePillarPrefab, targetPosition, Quaternion.identity);
                     icePillar.GetComponent<IcePillar>().Init(sprite.flipX);
                 }
@@ -153,28 +157,38 @@ public class Player : MonoBehaviour
                     canGrapple = true;
                     velocity = Vector3.zero;
                     vine.enabled = false;
+                    vineTimer = 0;
                     vineGrapplePointObject = null;
                 }
                 break;
             case StanceType.summer:
                 if(Input.GetButtonDown("Fire1"))
-                {                  
+                {
+                    //play loop animation here
                     if (!fireConePrefab.activeInHierarchy)
-                        fireConePrefab.SetActive(true);              
+                    {
+                        fireConePrefab.SetActive(true);
+                        smokeParticles.emissionRate = 15;
+                    }
                 }
                 else if(Input.GetButtonUp("Fire1"))
                 {
                     if (fireConePrefab.activeInHierarchy)
+                    {
                         fireConePrefab.SetActive(false);
+                        smokeParticles.emissionRate = 0;
+                    }
                 }
 
                 if(fireConePrefab.activeInHierarchy)
                 {
+                    //or somewhere heres
                     Vector2 targetPosition = Vector3.zero;
                     float directionX = (sprite.flipX) ? -1f : 1f;
                     targetPosition.x += directionX;
                     fireConePrefab.transform.localPosition = targetPosition;
                     fireConePrefab.GetComponent<FireCone>().sprite.flipX = sprite.flipX;
+                    smokeParticles.transform.position = fireConePrefab.transform.position;
                 }
                 break;
             case StanceType.fall:
@@ -210,6 +224,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Swing()
     {
+        Physics2D.SyncTransforms();
         RaycastHit2D vineGrapplePoint = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, controller.collisionMask);
         float distance = Vector3.Distance(vineGrapplePoint.point, transform.position);
         if (vineGrapplePoint.collider != null)
@@ -222,48 +237,64 @@ public class Player : MonoBehaviour
                 vine.enabled = true;
                 controller.freeze = true;
                 //Play animation or sprite swap here
-                yield return new WaitForSeconds(.1f);
-            }
-        }
-
-        controller.freeze = false;
-
-        while (vineGrapplePointObject != null)
-        {
-            distance = Vector3.Distance(vineGrapplePoint.point, transform.position);
-
-            if (distance < .1f)
-            {
-                canGrapple = false;
-                velocity = Vector3.zero;
-                Debug.Log("Break grapple");
-                vineGrapplePointObject = null;
-                vine.enabled = false;
-            }
-            else if (distance < grappleDistance)
-            {
-                vine.SetPosition(0, transform.position);
-                vine.SetPosition(1, vineGrapplePoint.point);
-                vine.enabled = true;
-                
                 Vector3 hit3d = vineGrapplePoint.point;
                 Vector3 dir = hit3d - transform.position;
                 if (dir.normalized.x < 0)
                     sprite.flipX = true;
                 else
                     sprite.flipX = false;
-                velocity = dir.normalized * 10f;
+                yield return new WaitForSeconds(.1f);
             }
 
-            if (vineGrapplePointObject != null && (controller.collisions.above || controller.collisions.right || controller.collisions.left))
+            controller.freeze = false;
+            while (vineGrapplePointObject != null)
             {
-                vineGrapplePointObject = null;
-                vine.enabled = false;
-                canGrapple = false;
-                velocity = Vector3.zero;
-            }
+                distance = Vector3.Distance(vineGrapplePoint.point, transform.position);
 
-            yield return null;
+                if (distance < .1f)
+                {
+                    canGrapple = false;
+                    velocity = Vector3.zero;
+                    Debug.Log("Break grapple");
+                    vineGrapplePointObject = null;
+                    vine.enabled = false;
+                }
+                else if (distance < grappleDistance)
+                {
+                    vine.SetPosition(0, transform.position);
+                    vine.SetPosition(1, vineGrapplePoint.point);
+                    vine.enabled = true;
+
+                    Vector3 hit3d = vineGrapplePoint.point;
+                    Vector3 dir = hit3d - transform.position;
+                    velocity = dir.normalized * 15f;
+                }
+                if (vineGrapplePointObject != null && ((controller.collisions.above || controller.collisions.right || controller.collisions.left) || distance > grappleDistance))
+                {
+                    vineGrapplePointObject = null;
+                    vine.enabled = false;
+                    canGrapple = false;
+                    velocity = Vector3.zero;
+                }
+                yield return null;
+            }
         }
+        else
+        {
+            vineTimer = .1f;
+            while (vineTimer > 0)
+            {
+                vine.enabled = true;
+                vine.SetPosition(0, transform.position);
+                if (sprite.flipX)
+                    vine.SetPosition(1, transform.position - Vector3.right * 3);
+                else
+                    vine.SetPosition(1, transform.position + Vector3.right * 3);
+                vineTimer -= Time.deltaTime;
+                yield return null;
+            }
+            if (vine.enabled)
+                vine.enabled = false;
+        }   
     }
 }

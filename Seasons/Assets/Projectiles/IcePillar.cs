@@ -7,10 +7,13 @@ public class IcePillar : MonoBehaviour, IFlammable
     Rigidbody2D rigid;
     SpriteRenderer sprite;
     BoxCollider2D collider;
+    ParticleSystem particleLoop;
+    [SerializeField] GameObject particleBurst;
 
     public float projectileSpeed = 5f;
     public void Init(bool isLeft = false)
     {
+        particleLoop = GetComponentInChildren<ParticleSystem>();
         sprite = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         collider.offset = (isLeft) ? new Vector2(collider.offset.x * -1, 0) : collider.offset;
@@ -32,6 +35,8 @@ public class IcePillar : MonoBehaviour, IFlammable
                 BoxCollider2D collider = GetComponent<BoxCollider2D>();
                 collider.isTrigger = false;
                 rigid.bodyType = RigidbodyType2D.Static;
+                particleLoop.Stop();
+                particleBurst.SetActive(true);
                 Destroy(this.gameObject, 10f);
             }
         }
