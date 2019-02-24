@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
     float stanceSwitchCooldownTimer;
     float stanceSwitchCooldown = .5f;
-    bool canGrapple;
+    bool canGrapple = true;
 
     public PlayerController controller;
     [SerializeField] SpriteRenderer sprite;
@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
                 }
                 break;
             case StanceType.spring:
-                if (Input.GetMouseButtonDown(0) && canGrapple)
+                if (Input.GetButtonDown("Fire1") && canGrapple)
                 {
                     StartCoroutine("Swing");                  
                 }
@@ -211,13 +211,26 @@ public class Player : MonoBehaviour
     IEnumerator Swing()
     {
         RaycastHit2D vineGrapplePoint = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, controller.collisionMask);
-
+        float distance = Vector3.Distance(vineGrapplePoint.point, transform.position);
         if (vineGrapplePoint.collider != null)
+        {
             vineGrapplePointObject = vineGrapplePoint.collider.gameObject;
+            if (distance < grappleDistance)
+            {
+                vine.SetPosition(0, transform.position);
+                vine.SetPosition(1, vineGrapplePoint.point);
+                vine.enabled = true;
+                controller.freeze = true;
+                //Play animation or sprite swap here
+                yield return new WaitForSeconds(.1f);
+            }
+        }
+
+        controller.freeze = false;
 
         while (vineGrapplePointObject != null)
         {
-            float distance = Vector3.Distance(vineGrapplePoint.point, transform.position);
+            distance = Vector3.Distance(vineGrapplePoint.point, transform.position);
 
             if (distance < .1f)
             {

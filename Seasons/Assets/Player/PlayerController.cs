@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     float maxClimbAngle = 80;
     float maxDescendAngle = 75;
-
+    public bool freeze;
     float horizontalRaySpacing;
     float verticalRaySpacing;
 
@@ -191,6 +191,8 @@ public class PlayerController : MonoBehaviour
             HorizontalCollisions(ref velocity);
         if(velocity.y != 0)
             VerticalCollisions(ref velocity);
+        if (freeze)
+            velocity = Vector2.zero;
         transform.Translate(velocity);
     }
 

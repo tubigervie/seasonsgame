@@ -827,7 +827,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -965,7 +965,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 587437085}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1133,7 +1133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 806159424}
   - component: {fileID: 806159423}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Vine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1188,7 +1188,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.15277863
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1200,8 +1200,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.9811321, g: 0, b: 0, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.20532994, g: 0.990566, b: 0.023362402, a: 1}
+      key1: {r: 0.20425692, g: 0.9811321, b: 0.041651815, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -2679,6 +2679,7 @@ MonoBehaviour:
     m_Bits: 512
   horizontalRayCount: 10
   verticalRayCount: 10
+  freeze: 0
   rigid: {fileID: 0}
 --- !u!114 &1351938502
 MonoBehaviour:
@@ -2698,7 +2699,6 @@ MonoBehaviour:
   maxJumpVelocity: 0
   velocity: {x: 0, y: 0, z: 0}
   vineGrapplePointObject: {fileID: 0}
-  canGrapple: 0
   controller: {fileID: 0}
   sprite: {fileID: 859187096}
   icePillarPrefab: {fileID: 2097459006840819399, guid: c2ca69a8ecfb2af458c8d49a7e79c8bc,
