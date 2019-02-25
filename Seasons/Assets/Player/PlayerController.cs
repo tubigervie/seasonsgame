@@ -24,11 +24,11 @@ public class PlayerController : Raycaster
     {
         float directionX = Mathf.Sign(velocity.x);
         float rayLength = Mathf.Abs(velocity.x) + skinWidth;
-        Physics2D.SyncTransforms();
         for (int i = 0; i < horizontalRayCount; i++)
         {
             Vector2 rayOrigin = (directionX == -1) ? raycastTargets.bottomLeft : raycastTargets.bottomRight;
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+            Physics2D.SyncTransforms();
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
             Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
             if (hit)
@@ -124,11 +124,11 @@ public class PlayerController : Raycaster
     {
         float directionY = Mathf.Sign(velocity.y);
         float rayLength = Mathf.Abs(velocity.y) + skinWidth;
-        Physics2D.SyncTransforms();
         for (int i = 0; i < verticalRayCount; i++)
         {
             Vector2 rayOrigin = (directionY == -1) ? raycastTargets.bottomLeft : raycastTargets.topLeft;
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
+            Physics2D.SyncTransforms();
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
 
             Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
@@ -152,7 +152,7 @@ public class PlayerController : Raycaster
                 float directionX = Mathf.Sign(velocity.x);
                 rayLength = Mathf.Abs(velocity.x) + skinWidth;
                 Vector2 ray2Origin = ((directionX == -1) ? raycastTargets.bottomLeft : raycastTargets.topLeft) + Vector2.up * velocity.y;
-                //Physics2D.SyncTransforms();
+                Physics2D.SyncTransforms();
                 RaycastHit2D hit2 = Physics2D.Raycast(ray2Origin, Vector2.right * directionX, rayLength, collisionMask);
 
                 if(hit2)
