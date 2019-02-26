@@ -58,7 +58,7 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - serializedVersion: 2
+    serializedVersion: 2
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -75,11 +75,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-<<<<<<< HEAD
-    spriteID: f1019a9b56576ac40b42caef93cf4f2d
-=======
     spriteID: 822df03584b7e1c44a8c015acf5f47b3
->>>>>>> 9d0338836cbe20fa15490e0a6e4a918c064fcbb6
     vertices: []
     indices: 
     edges: []
