@@ -62,6 +62,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenu.gameIsPaused)
+            return;
         HandlePlayerMovement();
         HandleStanceSwitch();
         HandleSpellCasting();
@@ -94,7 +96,7 @@ public class Player : MonoBehaviour
         float targetVelocityX = input.x * moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime, input);
     }
 
     private void HandleJump()
@@ -156,6 +158,8 @@ public class Player : MonoBehaviour
                 }
                 else if(Input.GetMouseButtonUp(0))
                 {
+                    if (vineTimer > 0)
+                        return;
                     canGrapple = true;
                     velocity = Vector3.zero;
                     vine.enabled = false;
@@ -214,7 +218,7 @@ public class Player : MonoBehaviour
         switch (stance)
         {
             case StanceType.winter:
-                sprite.color = Color.blue;
+                sprite.color = Color.cyan;
                 break;
             case StanceType.spring:
                 sprite.color = Color.green;
@@ -287,7 +291,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            vineTimer = .1f;
+            vineTimer = .3f;
             while (vineTimer > 0)
             {
                 vine.enabled = true;

@@ -7,7 +7,8 @@ public class PlayerController : Raycaster
     float maxClimbAngle = 80;
     float maxDescendAngle = 75;
     public bool freeze;
-    [SerializeField] public CollisionInfo collisions;
+    public CollisionInfo collisions;
+    [System.NonSerialized] public Vector2 playerInput;
 
     // Start is called before the first frame update
     public override void Start()
@@ -169,11 +170,12 @@ public class PlayerController : Raycaster
         }
     }
 
-    public void Move(Vector3 velocity, bool standingOnPlatform = false)
+    public void Move(Vector3 velocity, Vector2 input, bool standingOnPlatform = false)
     {
         UpdateRaycastTargets();
         collisions.Reset();
         collisions.velocityOld = velocity;
+        playerInput = input;
 
         if(velocity.y < 0)
         {

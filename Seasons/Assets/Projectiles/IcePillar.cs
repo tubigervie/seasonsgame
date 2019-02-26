@@ -9,6 +9,7 @@ public class IcePillar : MonoBehaviour, IFlammable
     BoxCollider2D collider;
     ParticleSystem particleLoop;
     [SerializeField] GameObject particleBurst;
+    [SerializeField] GameObject steamParticles;
 
     public float projectileSpeed = 5f;
     public void Init(bool isLeft = false)
@@ -44,6 +45,10 @@ public class IcePillar : MonoBehaviour, IFlammable
 
     public void Burn()
     {
-        Destroy(this.gameObject);
+        var steam = Instantiate(steamParticles);
+        steam.transform.position = transform.position;
+        
+        Destroy(this.gameObject, 1);
+        Destroy(steam, 1.1f);
     }
 }

@@ -14,7 +14,7 @@ public class WindColumn : MonoBehaviour
         if (player != null)
         {
             player.velocity.y = .75f * player.maxJumpVelocity;
-            player.controller.Move(player.velocity * Time.deltaTime);
+            player.controller.Move(player.velocity * Time.deltaTime, player.controller.playerInput);
         }
     }
 

@@ -109,7 +109,7 @@ public class PlatformController : Raycaster
             if (!passengerDict.ContainsKey(passenger.transform))
                 passengerDict.Add(passenger.transform, passenger.transform.GetComponent<PlayerController>());
             if(passenger.moveBeforePlatform == moveBeforePlatform)
-                passengerDict[passenger.transform].Move(passenger.velocity, passenger.isOnPlatform);
+                passengerDict[passenger.transform].Move(passenger.velocity, passengerDict[passenger.transform].playerInput, passenger.isOnPlatform);
         }
     }
 
