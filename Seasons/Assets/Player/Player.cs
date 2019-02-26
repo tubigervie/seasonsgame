@@ -62,6 +62,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenu.gameIsPaused)
+            return;
         HandlePlayerMovement();
         HandleStanceSwitch();
         HandleSpellCasting();
@@ -94,7 +96,7 @@ public class Player : MonoBehaviour
         float targetVelocityX = input.x * moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime, input);
     }
 
     private void HandleJump()

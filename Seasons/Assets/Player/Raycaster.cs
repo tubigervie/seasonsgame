@@ -16,10 +16,14 @@ public class Raycaster : MonoBehaviour
     public int verticalRayCount = 4;
     protected Rigidbody2D rigid;
 
-    public virtual void Start()
+    public virtual void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
+    }
+
+    public virtual void Start()
+    {
         CalculateRaySpacing();
     }
 
