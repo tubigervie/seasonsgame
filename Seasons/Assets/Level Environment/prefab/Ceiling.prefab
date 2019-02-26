@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1761399368790457158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244989113792856715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.815018, y: 5.707583, z: -0.09619666}
+  m_LocalPosition: {x: 61.815018, y: 5.707583, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6651382451146585565}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 7112066822842117374}
   - component: {fileID: 181590681}
   - component: {fileID: 171685475}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DirtPlatformSprites_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 5430230265291838207}
   - component: {fileID: 1164330918}
   - component: {fileID: 1196895828}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DirtPlatformSprites_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 506973726492685779}
   - component: {fileID: 1364316558}
   - component: {fileID: 200370317}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DirtPlatformSprites_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 4908902140459143466}
   - component: {fileID: 543891393}
   - component: {fileID: 817563840}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DirtPlatformSprites_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 3032688006887601081}
   - component: {fileID: 1187160942}
   - component: {fileID: 671040719}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DirtPlatformSprites_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 5705921506739138293}
   - component: {fileID: 486499154}
   - component: {fileID: 671364165}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DirtPlatformSprites_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
