@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public void StartGame()
+    public void RestartGame()
     {
-        SceneManager.LoadScene(1);
+    	PauseMenu.gameIsPaused = false;
+    	Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 
     public void QuitGame()
