@@ -1,0 +1,9 @@
+To replicate the animation of the gifs I posted on the Discord
+
+Player Walking — each frame 4 milliseconds
+- Loop [Walk0, Walk1]
+
+Flame (Summer Stance) — each frame 3 milliseconds
+- OnButtonPress:            [Flame1, Flame2, Flame 3]
+- WhileButtonHeldDown:  Loop([Flame4,Flame5,Flame6])
+- OnButtonRelease:         [Flame3,Flame2,Flame1]
