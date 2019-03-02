@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public Vector3 velocity;
 
     float stanceSwitchCooldownTimer;
-    float stanceSwitchCooldown = .5f;
+    float stanceSwitchCooldown = .1f;
     bool canGrapple = true;
 
     public PlayerController controller;
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
 
     void HandlePlayerMovement()
     {
-        if (controller.collisions.above || controller.collisions.below)
+        if (controller.collisions.below)
         {
             if(WindColumn.windColumnCount > 0)
                 WindColumn.DecrementWindCount();
@@ -96,7 +96,9 @@ public class Player : MonoBehaviour
         float targetVelocityX = input.x * moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
+        Debug.Log(velocity);
         controller.Move(velocity * Time.deltaTime, input);
+        controller.anim.SetFloat("horizontal", Mathf.Abs(velocity.x));
     }
 
     private void HandleJump()
@@ -119,13 +121,13 @@ public class Player : MonoBehaviour
         if (stanceSwitchCooldownTimer > 0)
             return;
         StanceType prevStance = stance;
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Q))
             stance = StanceType.winter;
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.W))
             stance = StanceType.spring;
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.E))
             stance = StanceType.summer;
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.R))
             stance = StanceType.fall;
         if(stance != prevStance)
         {
