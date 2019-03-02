@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public enum StanceType
@@ -102,7 +102,10 @@ public class Player : MonoBehaviour
     private void HandleJump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
+        {
+        	//GetComponent<SpriteRenderer>.sprite = PlayerJump;
             velocity.y = maxJumpVelocity;
+        }
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
