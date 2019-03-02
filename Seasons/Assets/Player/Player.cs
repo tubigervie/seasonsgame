@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] float minJumpHeight = .25f;
     [SerializeField] float timeToJumpApex = .4f;
 
-    float grappleDistance = 4;
+    float grappleDistance = 6;
     float accelerationTimeAirborne = .2f;
     float accelerationTimeGrounded = .1f;
     float moveSpeed = 6;
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
     float stanceSwitchCooldownTimer;
     float stanceSwitchCooldown = .1f;
-    bool canGrapple = true;
+    public bool canGrapple = true;
 
     public PlayerController controller;
     [SerializeField] SpriteRenderer sprite;
@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     public GameObject vineGrapplePointObject;
     [SerializeField] ParticleSystem smokeParticles;
     [SerializeField] GameObject leavesParticles;
+    [SerializeField] GameObject vineParticles;
 
     [SerializeField] StanceType stance;
     int maxWindZones = 1;
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
         vine.enabled = false;
+        vineParticles.SetActive(false);
         vine.useWorldSpace = true;
     }
 
@@ -96,7 +98,6 @@ public class Player : MonoBehaviour
         float targetVelocityX = input.x * moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
-        Debug.Log(velocity);
         controller.Move(velocity * Time.deltaTime, input);
         controller.anim.SetFloat("horizontal", Mathf.Abs(velocity.x));
     }
@@ -160,16 +161,6 @@ public class Player : MonoBehaviour
                 if (Input.GetButtonDown("Fire1") && canGrapple)
                 {
                     StartCoroutine("Swing");                  
-                }
-                else if(Input.GetMouseButtonUp(0))
-                {
-                    if (vineTimer > 0)
-                        return;
-                    canGrapple = true;
-                    velocity = Vector3.zero;
-                    vine.enabled = false;
-                    vineTimer = 0;
-                    vineGrapplePointObject = null;
                 }
                 break;
             case StanceType.summer:
@@ -240,11 +231,11 @@ public class Player : MonoBehaviour
     IEnumerator Swing()
     {
         Physics2D.SyncTransforms();
-        RaycastHit2D vineGrapplePoint = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, controller.collisionMask);
-        if (vineGrapplePoint.collider != null)
+        GrappleObject vineGrapplePoint = LevelManager.singleton.NextGrappleObject(transform.position, grappleDistance);
+        if(vineGrapplePoint != null)
         {
-            float distance = Vector3.Distance(vineGrapplePoint.collider.transform.position, transform.position);
-            vineGrapplePointObject = vineGrapplePoint.collider.gameObject;
+            float distance = Vector3.Distance(vineGrapplePoint.transform.position, transform.position);
+            vineGrapplePointObject = vineGrapplePoint.gameObject;
             if (distance < grappleDistance)
             {
                 vine.SetPosition(0, transform.position);
@@ -264,12 +255,15 @@ public class Player : MonoBehaviour
             controller.freeze = false;
             while (vineGrapplePointObject != null)
             {
+                controller.collisions.below = false;
                 distance = Vector3.Distance(vineGrapplePointObject.transform.position, transform.position);
 
                 if (distance < .1f)
                 {
-                    canGrapple = false;
-                    velocity = Vector3.zero;
+                    canGrapple = true;
+                    //velocity = Vector3.zero;
+                    vineGrapplePoint.canGrapple = false;
+                    vineGrapplePoint.timer = .75f;
                     Debug.Log("Break grapple");
                     vineGrapplePointObject = null;
                     vine.enabled = false;
@@ -288,8 +282,10 @@ public class Player : MonoBehaviour
                 {
                     vineGrapplePointObject = null;
                     vine.enabled = false;
-                    canGrapple = false;
-                    velocity = Vector3.zero;
+                    canGrapple = true;
+                    vineGrapplePoint.canGrapple = false;
+                    vineGrapplePoint.timer = .75f;
+                    //velocity = Vector3.zero;
                 }
                 yield return null;
             }

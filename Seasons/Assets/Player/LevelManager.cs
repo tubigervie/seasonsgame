@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager singleton;
     public GameObject currentCheckpoint;
     Player player;
+    public List<GrappleObject> grappleObjects = new List<GrappleObject>();
 
     private void Awake()
     {
@@ -31,5 +32,21 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         player.transform.position = currentCheckpoint.transform.position;
         CameraManager.singleton.enabled = true;
+    }
+
+    public GrappleObject NextGrappleObject(Vector3 position, float minDistance)
+    {
+        float min = minDistance;
+        GrappleObject closestTarget = null;
+        for(int i = 0; i < grappleObjects.Count; i++)
+        {
+            float distance = Vector3.Distance(position, grappleObjects[i].transform.position);
+            if (grappleObjects[i].canGrapple && distance < min)
+            {
+                min = distance;
+                closestTarget = grappleObjects[i];
+            }
+        }
+        return closestTarget;
     }
 }
