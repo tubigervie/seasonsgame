@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
                 {
                     //or somewhere heres
                     Vector2 targetPosition = Vector3.zero;
-                    float directionX = (sprite.flipX) ? -1f : 1f;
+                    float directionX = (sprite.flipX) ? -1.3f : 1.3f;
                     targetPosition.x += directionX;
                     fireConePrefab.transform.localPosition = targetPosition;
                     fireConePrefab.GetComponent<FireCone>().sprite.flipX = sprite.flipX;

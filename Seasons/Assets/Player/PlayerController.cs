@@ -6,6 +6,7 @@ public class PlayerController : Raycaster
 {
     float maxClimbAngle = 80;
     float maxDescendAngle = 75;
+    [SerializeField] Animator anim;
     public bool freeze;
     public CollisionInfo collisions;
     [System.NonSerialized] public Vector2 playerInput;
@@ -168,6 +169,7 @@ public class PlayerController : Raycaster
             }
 
         }
+        anim.SetBool("isGrounded", collisions.below);
     }
 
     public void Move(Vector3 velocity, Vector2 input, bool standingOnPlatform = false)
@@ -189,7 +191,8 @@ public class PlayerController : Raycaster
         if (freeze)
             velocity = Vector2.zero;
         transform.Translate(velocity);
-
+        Debug.Log(velocity);
+        anim.SetFloat("horizontal", Mathf.Abs(velocity.x));
         if (standingOnPlatform)
             collisions.below = true;
     }
