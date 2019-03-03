@@ -1,9 +1,17 @@
 To replicate the animation of the gifs I posted on the Discord
 
-Player Walking — each frame 4 milliseconds
-- Loop [Walk0, Walk1]
+Player Idle Animation
+- Standing [25 ms]
+- Blink [4 ms]
+- Standing [25 ms]
+- Stretching [8 ms]
+LOOPED
 
-Flame (Summer Stance) — each frame 3 milliseconds
+Player Walking â€” each frame 4 milliseconds
+- Loop [Walk0, Walk1]
+- Walk0 sprite has 1 row of transparent pixels below it so that she is off ground 
+
+Flame (Summer Stance) â€” each frame 3 milliseconds
 - OnButtonPress:            [Flame1, Flame2, Flame 3]
 - WhileButtonHeldDown:  Loop([Flame4,Flame5,Flame6])
 - OnButtonRelease:         [Flame3,Flame2,Flame1]
