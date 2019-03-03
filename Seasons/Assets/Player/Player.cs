@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     [SerializeField] ParticleSystem smokeParticles;
     [SerializeField] GameObject leavesParticles;
     [SerializeField] GameObject vineParticles;
+    ParticleSystem vineGlow;
 
     [SerializeField] StanceType stance;
     int maxWindZones = 1;
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
         vine.enabled = false;
+        vineGlow = vineParticles.GetComponent<ParticleSystem>();
         vineParticles.SetActive(false);
         vine.useWorldSpace = true;
     }
@@ -106,7 +108,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
         {
-        	//GetComponent<SpriteRenderer>.sprite = PlayerJump;
             velocity.y = maxJumpVelocity;
         }
 
@@ -234,6 +235,7 @@ public class Player : MonoBehaviour
         GrappleObject vineGrapplePoint = LevelManager.singleton.NextGrappleObject(transform.position, grappleDistance);
         if(vineGrapplePoint != null)
         {
+            canGrapple = false;
             float distance = Vector3.Distance(vineGrapplePoint.transform.position, transform.position);
             vineGrapplePointObject = vineGrapplePoint.gameObject;
             if (distance < grappleDistance)
@@ -241,15 +243,29 @@ public class Player : MonoBehaviour
                 vine.SetPosition(0, transform.position);
                 vine.SetPosition(1, vineGrapplePointObject.transform.position);
                 vine.enabled = true;
+
+                Vector3 midPoint = (vineGrapplePointObject.transform.position + transform.position) / 2f;
+                vineParticles.transform.position = midPoint;
+
+                var particleShape = vineGlow.shape;
+                particleShape.scale = new Vector3(distance, particleShape.scale.y, particleShape.scale.z);
+
+                vineParticles.transform.LookAt(transform.position);
+                Vector3 targetRot = vineParticles.transform.eulerAngles;
+                targetRot.z = (vineGrapplePointObject.transform.position.x - transform.position.x >= 0) ? targetRot.x : -targetRot.x;
+                targetRot.x = targetRot.y = 0;
+                vineParticles.transform.eulerAngles = targetRot;
+
+                vineParticles.SetActive(true);
                 controller.freeze = true;
-                //Play animation or sprite swap here
+
                 Vector3 hit3d = vineGrapplePointObject.transform.position;
                 Vector3 dir = hit3d - transform.position;
                 if (dir.normalized.x < 0)
                     sprite.flipX = true;
                 else
                     sprite.flipX = false;
-                yield return new WaitForSeconds(.1f);
+                yield return new WaitForSeconds(.05f);
             }
 
             controller.freeze = false;
@@ -267,6 +283,7 @@ public class Player : MonoBehaviour
                     Debug.Log("Break grapple");
                     vineGrapplePointObject = null;
                     vine.enabled = false;
+                    vineParticles.SetActive(false);
                 }
                 else if (distance < grappleDistance)
                 {
@@ -285,6 +302,7 @@ public class Player : MonoBehaviour
                     canGrapple = true;
                     vineGrapplePoint.canGrapple = false;
                     vineGrapplePoint.timer = .75f;
+                    vineParticles.SetActive(false);
                     //velocity = Vector3.zero;
                 }
                 yield return null;
@@ -295,17 +313,37 @@ public class Player : MonoBehaviour
             vineTimer = .3f;
             while (vineTimer > 0)
             {
+                canGrapple = false;
                 vine.enabled = true;
                 vine.SetPosition(0, transform.position);
+                Vector3 targetPos;
                 if (sprite.flipX)
-                    vine.SetPosition(1, transform.position - Vector3.right * 3);
+                    targetPos = transform.position - Vector3.right * 3;
                 else
-                    vine.SetPosition(1, transform.position + Vector3.right * 3);
+                    targetPos = transform.position + Vector3.right * 3;
+                vine.SetPosition(1, targetPos);
+                float distance = Vector3.Distance(targetPos, transform.position);
+                Vector3 midPoint = (targetPos + transform.position) / 2f;
+                vineParticles.transform.position = midPoint;
+                var particleShape = vineGlow.shape;
+                particleShape.scale = new Vector3(distance, particleShape.scale.y, particleShape.scale.z);
+
+                vineParticles.transform.LookAt(transform.position);
+                Vector3 targetRot = vineParticles.transform.eulerAngles;
+                targetRot.z = (targetPos.x - transform.position.x >= 0) ? targetRot.x : -targetRot.x;
+                targetRot.x = targetRot.y = 0;
+                vineParticles.transform.eulerAngles = targetRot;
+
+                vineParticles.SetActive(true);
                 vineTimer -= Time.deltaTime;
                 yield return null;
             }
             if (vine.enabled)
+            {
+                canGrapple = true;
+                vineParticles.SetActive(false);
                 vine.enabled = false;
+            }
         }   
     }
 }
