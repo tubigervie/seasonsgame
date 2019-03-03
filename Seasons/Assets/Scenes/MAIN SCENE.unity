@@ -20662,7 +20662,7 @@ GameObject:
   - component: {fileID: 1386803314}
   - component: {fileID: 1387763086}
   m_Layer: 0
-  m_Name: FireFliesGreen
+  m_Name: SpringGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

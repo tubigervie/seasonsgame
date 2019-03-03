@@ -275,7 +275,7 @@ public class Player : MonoBehaviour
                 controller.collisions.below = false;
                 distance = Vector3.Distance(vineGrapplePointObject.transform.position, transform.position);
 
-                if (distance < .1f)
+                if (distance < 1f)
                 {
                     canGrapple = true;
                     //velocity = Vector3.zero;
