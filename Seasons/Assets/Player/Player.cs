@@ -153,6 +153,7 @@ public class Player : MonoBehaviour
                     Vector2 targetPosition = transform.position;
                     float directionX = (sprite.flipX) ? -1f : 1f;
                     targetPosition.x += directionX;
+                    targetPosition.y += .2f;
                     //play sprite animation
                     var icePillar = Instantiate(icePillarPrefab, targetPosition, Quaternion.identity);
                     icePillar.GetComponent<IcePillar>().Init(sprite.flipX);

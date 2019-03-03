@@ -6,24 +6,25 @@ public class IcePillar : MonoBehaviour, IFlammable
 {
     Rigidbody2D rigid;
     SpriteRenderer sprite;
-    BoxCollider2D collider;
+    PolygonCollider2D collider;
     ParticleSystem particleLoop;
     [SerializeField] GameObject particleBurst;
     [SerializeField] GameObject steamParticles;
+    GameObject collidedObject;
+    Vector3 collidedObjectInitialPosition;
+    bool isStatic;
+    public float projectileSpeed = 10f;
 
-    public float projectileSpeed = 5f;
     public void Init(bool isLeft = false)
     {
         particleLoop = GetComponentInChildren<ParticleSystem>();
         sprite = GetComponent<SpriteRenderer>();
-        collider = GetComponent<BoxCollider2D>();
-        collider.offset = (isLeft) ? new Vector2(collider.offset.x * -1, 0) : collider.offset;
-        sprite.flipX = isLeft;
+        collider = GetComponent<PolygonCollider2D>();
+        Vector3 targetRotation = transform.eulerAngles;
+        targetRotation.y = (isLeft) ? 180 : 0;
+        transform.eulerAngles = targetRotation;
         rigid = GetComponent<Rigidbody2D>();
-        if (isLeft)
-            rigid.velocity = (-transform.right * projectileSpeed);
-        else
-            rigid.velocity = transform.right * projectileSpeed;
+        rigid.velocity = transform.right * projectileSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -33,8 +34,9 @@ public class IcePillar : MonoBehaviour, IFlammable
             if(other.gameObject.GetComponent<IcePillar>() == null)
             {
                 rigid.velocity = Vector2.zero;
-                BoxCollider2D collider = GetComponent<BoxCollider2D>();
                 collider.isTrigger = false;
+                collidedObject = other.gameObject;
+                collidedObjectInitialPosition = collidedObject.transform.position;
                 rigid.bodyType = RigidbodyType2D.Static;
                 particleLoop.Stop();
                 particleBurst.SetActive(true);
@@ -50,5 +52,25 @@ public class IcePillar : MonoBehaviour, IFlammable
         
         Destroy(this.gameObject, 1);
         Destroy(steam, 1.1f);
+    }
+
+    void Update()
+    {
+        if (collidedObject != null)
+        {
+            rigid.bodyType = RigidbodyType2D.Static;
+            rigid.gravityScale = 1;
+        }
+        else
+        {
+            rigid.bodyType = RigidbodyType2D.Dynamic;
+        }
+        if (collidedObject != null && collidedObject.transform.position != collidedObjectInitialPosition)
+        {
+            particleBurst.GetComponent<ParticleSystem>().Stop();
+            particleBurst.GetComponent<ParticleSystem>().Play();
+            Destroy(this.gameObject, .2f);
+        }
+
     }
 }

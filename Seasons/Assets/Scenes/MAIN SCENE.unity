@@ -1475,7 +1475,7 @@ PrefabInstance:
     - target: {fileID: 8449408872429346669, guid: 7d06ce8eac293bc41808a0759cdd8ec4,
         type: 3}
       propertyPath: localWaypoints.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8449408872429346669, guid: 7d06ce8eac293bc41808a0759cdd8ec4,
         type: 3}
@@ -1510,7 +1510,7 @@ PrefabInstance:
     - target: {fileID: 8449408872429346669, guid: 7d06ce8eac293bc41808a0759cdd8ec4,
         type: 3}
       propertyPath: speed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d06ce8eac293bc41808a0759cdd8ec4, type: 3}
