@@ -150,6 +150,7 @@ public class Player : MonoBehaviour
             case StanceType.winter:
                 if (Input.GetButtonDown("Fire1"))
                 {
+                    controller.anim.Play("Cast");
                     Vector2 targetPosition = transform.position;
                     float directionX = (sprite.flipX) ? -1f : 1f;
                     targetPosition.x += directionX;
@@ -162,12 +163,14 @@ public class Player : MonoBehaviour
             case StanceType.spring:
                 if (Input.GetButtonDown("Fire1") && canGrapple)
                 {
+                    controller.anim.Play("Cast");
                     StartCoroutine("Swing");                  
                 }
                 break;
             case StanceType.summer:
                 if(Input.GetButtonDown("Fire1"))
                 {
+                    controller.anim.Play("Cast");
                     //play loop animation here
                     if (!fireConePrefab.activeInHierarchy)
                     {
@@ -198,6 +201,7 @@ public class Player : MonoBehaviour
             case StanceType.fall:
                 if (Input.GetButtonDown("Fire1") && (WindColumn.windColumnCount < maxWindZones))
                 {
+                    controller.anim.Play("Cast");
                     Vector2 targetPosition = transform.position;
                     Instantiate(windZonePrefab, targetPosition, Quaternion.identity);
                     Vector3 targetParticlePos = targetPosition;
@@ -266,7 +270,7 @@ public class Player : MonoBehaviour
                     sprite.flipX = true;
                 else
                     sprite.flipX = false;
-                yield return new WaitForSeconds(.05f);
+                yield return new WaitForSeconds(.1f);
             }
 
             controller.freeze = false;
