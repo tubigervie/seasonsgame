@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] GameObject startPoint;
     public static LevelManager singleton;
     public GameObject currentCheckpoint;
     Player player;
@@ -18,6 +19,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         player = Player.singleton;
+        currentCheckpoint = startPoint;
     }
 
     // Update is called once per frame

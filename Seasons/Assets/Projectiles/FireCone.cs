@@ -10,7 +10,7 @@ public class FireCone : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         IFlammable canBurn = collision.GetComponent<IFlammable>();
         if (canBurn != null)
