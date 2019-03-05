@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9786c3990e75b44b5e211c79203111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPoint: {fileID: 0}
   currentCheckpoint: {fileID: 0}
   grappleObjects:
   - {fileID: 0}

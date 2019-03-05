@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LevelManager : MonoBehaviour
     public GameObject currentCheckpoint;
     Player player;
     public List<GrappleObject> grappleObjects = new List<GrappleObject>();
+    public Text health;
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class LevelManager : MonoBehaviour
     {
         player = Player.singleton;
         currentCheckpoint = startPoint;
+        health.text = "3";
     }
 
     // Update is called once per frame
@@ -30,6 +33,8 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator DieRespawn()
     {
+        int i = int.Parse(health.text); i--;
+        health.text = i.ToString();
         player.ResetAbilities();
         player.velocity = Vector3.zero;
         player.gameObject.SetActive(false);
