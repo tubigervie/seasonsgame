@@ -30,9 +30,13 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator DieRespawn()
     {
+        player.ResetAbilities();
+        player.velocity = Vector3.zero;
+        player.gameObject.SetActive(false);
         CameraManager.singleton.enabled = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(.5f);
         player.transform.position = currentCheckpoint.transform.position;
+        player.gameObject.SetActive(true);
         CameraManager.singleton.enabled = true;
     }
 

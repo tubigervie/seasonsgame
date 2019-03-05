@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] float minJumpHeight = .25f;
     [SerializeField] float timeToJumpApex = .4f;
 
-    float grappleDistance = 6;
+    float grappleDistance = 7;
     float accelerationTimeAirborne = .2f;
     float accelerationTimeGrounded = .1f;
     float moveSpeed = 6;
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     public bool canGrapple = true;
 
     public PlayerController controller;
-    [SerializeField] SpriteRenderer sprite;
+    public SpriteRenderer sprite;
     [SerializeField] GameObject icePillarPrefab;
     [SerializeField] GameObject fireConePrefab;
     [SerializeField] GameObject windZonePrefab;
@@ -351,5 +351,18 @@ public class Player : MonoBehaviour
                 vine.enabled = false;
             }
         }   
+    }
+
+    public void ResetAbilities()
+    {
+        if (fireConePrefab.activeInHierarchy)
+        {
+            controller.anim.SetBool("isCastingLoop", false);
+            fireConePrefab.SetActive(false);
+            smokeParticles.emissionRate = 0;
+        }
+        vine.enabled = false;
+        canGrapple = true;
+        vineParticles.SetActive(false);
     }
 }
