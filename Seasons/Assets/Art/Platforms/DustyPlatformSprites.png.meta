@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: d0389fab159999b42952b9874f2ad914
+guid: 23200758f831c5d458fb800cc379bd98
 TextureImporter:
   fileIDToRecycleName:
-    21300000: DirtPlatformSprites_0
-    21300002: DirtPlatformSprites_1
-    21300004: DirtPlatformSprites_2
-    21300006: DirtPlatformSprites_3
-    21300008: DirtPlatformSprites_4
-    21300010: DirtPlatformSprites_5
-    21300012: DirtPlatformSprites_6
+    21300000: DustyPlatformSprites_0
+    21300002: DustyPlatformSprites_1
+    21300004: DustyPlatformSprites_2
+    21300006: DustyPlatformSprites_3
+    21300008: DustyPlatformSprites_4
+    21300010: DustyPlatformSprites_5
+    21300012: DustyPlatformSprites_6
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -102,7 +102,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DirtPlatformSprites_0
+      name: DustyPlatformSprites_0
       rect:
         serializedVersion: 2
         x: 5
@@ -110,19 +110,19 @@ TextureImporter:
         width: 60
         height: 60
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c745ac12de0b3a4685b85f49f6da9b0
+      spriteID: 91bfd2940c96f7948bf1cfc8ed4e3541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DirtPlatformSprites_1
+      name: DustyPlatformSprites_1
       rect:
         serializedVersion: 2
         x: 70
@@ -130,19 +130,19 @@ TextureImporter:
         width: 60
         height: 60
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64ed748518f489e45be5edad003bcd1f
+      spriteID: f5b0f713dc80fcd498676841307e09cc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DirtPlatformSprites_2
+      name: DustyPlatformSprites_2
       rect:
         serializedVersion: 2
         x: 135
@@ -150,19 +150,19 @@ TextureImporter:
         width: 60
         height: 60
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa25b319215e4a64da9d07591702e0cc
+      spriteID: 270fba7807f6eb0489b1fadef21d6c2d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DirtPlatformSprites_3
+      name: DustyPlatformSprites_3
       rect:
         serializedVersion: 2
         x: 200
@@ -170,19 +170,19 @@ TextureImporter:
         width: 60
         height: 60
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f62d7bac3dcd6344687e5e9286359428
+      spriteID: a9de29f07f583cd42b202337b6a1cfb5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DirtPlatformSprites_4
+      name: DustyPlatformSprites_4
       rect:
         serializedVersion: 2
         x: 265
@@ -190,19 +190,19 @@ TextureImporter:
         width: 60
         height: 60
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3bec2f0c3f05f544a7d8d0693a3f8b2
+      spriteID: befa68465910b7347a962b87711be0dd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DirtPlatformSprites_5
+      name: DustyPlatformSprites_5
       rect:
         serializedVersion: 2
         x: 330
@@ -210,19 +210,19 @@ TextureImporter:
         width: 60
         height: 60
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87d6ea4ff9386f549bab4cf13d357e3c
+      spriteID: b53a5425afcdbdb4ebd28ab6b0680f56
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DirtPlatformSprites_6
+      name: DustyPlatformSprites_6
       rect:
         serializedVersion: 2
         x: 395
@@ -230,13 +230,13 @@ TextureImporter:
         width: 60
         height: 60
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d376bb0a9c919641a8a05a5276fa040
+      spriteID: 0ffa2dc37133a7744acc148d05ca432c
       vertices: []
       indices: 
       edges: []
@@ -244,7 +244,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 076f6f67d2eeb304a895a15bf5759dd1
+    spriteID: e54e5bbd0479c4e4b8eb70ed6f856a97
     vertices: []
     indices: 
     edges: []
