@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BurnGate : MonoBehaviour, IFlammable
 {
+    [SerializeField] ParticleSystem burnGlow;
     [SerializeField] int health = 5;
     float timer;
     
@@ -12,7 +13,8 @@ public class BurnGate : MonoBehaviour, IFlammable
         if (timer > 0)
             return;
         health--;
-        timer = .3f;
+        burnGlow.Play();
+        timer = .7f;
         if(health <= 0)
             Destroy(this.gameObject);
     }

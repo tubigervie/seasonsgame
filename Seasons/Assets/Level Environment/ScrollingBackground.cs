@@ -9,7 +9,7 @@ public class ScrollingBackground : MonoBehaviour
 
     private Transform cameraTransform;
     [SerializeField] Transform[] layers;
-    private float viewZone = 10;
+    private float viewZone = 6;
     int leftIndex;
     int rightIndex;
     private float lastCameraX;

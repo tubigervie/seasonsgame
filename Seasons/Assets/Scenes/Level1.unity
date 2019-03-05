@@ -10357,6 +10357,15 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: 111, y: -9, z: 0}
+    second:
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
   - first: {x: -14, y: -8, z: 0}
     second:
       m_TileIndex: 5
@@ -10757,6 +10766,15 @@ Tilemap:
     second:
       m_TileIndex: 3
       m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 111, y: -8, z: 0}
+    second:
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -14905,7 +14923,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 723436de0b471ba4facfb61e740425e3, type: 2}
   - m_RefCount: 20
     m_Data: {fileID: 11400000, guid: ecad243adc6dad44fbed9cc0dad9f8cb, type: 2}
-  - m_RefCount: 1411
+  - m_RefCount: 1413
     m_Data: {fileID: 11400000, guid: 845222a95ba527f47b38040ee7f4605d, type: 2}
   - m_RefCount: 13
     m_Data: {fileID: 11400000, guid: 093f1df216e2bb14093f5788969c8468, type: 2}
@@ -14920,12 +14938,12 @@ Tilemap:
     m_Data: {fileID: 21300006, guid: 23200758f831c5d458fb800cc379bd98, type: 3}
   - m_RefCount: 20
     m_Data: {fileID: 21300008, guid: 23200758f831c5d458fb800cc379bd98, type: 3}
-  - m_RefCount: 1411
+  - m_RefCount: 1413
     m_Data: {fileID: 21300012, guid: 23200758f831c5d458fb800cc379bd98, type: 3}
   - m_RefCount: 13
     m_Data: {fileID: 21300010, guid: 23200758f831c5d458fb800cc379bd98, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 1543
+  - m_RefCount: 1545
     m_Data:
       e00: 1
       e01: 0
@@ -14944,7 +14962,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1543
+  - m_RefCount: 1545
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15130,6 +15148,16 @@ PrefabInstance:
       propertyPath: vineParticles
       value: 
       objectReference: {fileID: 595796755}
+    - target: {fileID: 3690337208809866386, guid: 7444537748f9868448cbd4e062b6e59e,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690337208809866386, guid: 7444537748f9868448cbd4e062b6e59e,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.35719377
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
 --- !u!114 &910182877 stripped
@@ -16371,41 +16399,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4242844931465752690, guid: f719f16ba9180b047a2013face7a42c0, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f719f16ba9180b047a2013face7a42c0, type: 3}
---- !u!1 &1871398163 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4242844931465752694, guid: f719f16ba9180b047a2013face7a42c0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1871398162}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1871398164
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1871398163}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.90909094, y: 2.090909}
-    newSize: {x: 2.321839, y: 0.87356323}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8333333, y: 1.9166666}
-  m_EdgeRadius: 0
 --- !u!1001 &1911767443
 PrefabInstance:
   m_ObjectHideFlags: 0
