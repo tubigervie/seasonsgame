@@ -135,6 +135,7 @@ public class Player : MonoBehaviour
         {
             if (fireConePrefab.activeInHierarchy)
                 fireConePrefab.SetActive(false);
+            controller.anim.SetBool("isCastingLoop", false);
             smokeParticles.emissionRate = 0;
             UpdateStance(stance);
             stanceSwitchCooldownTimer = stanceSwitchCooldown;
@@ -170,8 +171,7 @@ public class Player : MonoBehaviour
             case StanceType.summer:
                 if(Input.GetButtonDown("Fire1"))
                 {
-                    controller.anim.Play("Cast");
-                    //play loop animation here
+                    controller.anim.SetBool("isCastingLoop", true);
                     if (!fireConePrefab.activeInHierarchy)
                     {
                         fireConePrefab.SetActive(true);
@@ -182,6 +182,7 @@ public class Player : MonoBehaviour
                 {
                     if (fireConePrefab.activeInHierarchy)
                     {
+                        controller.anim.SetBool("isCastingLoop", false);
                         fireConePrefab.SetActive(false);
                         smokeParticles.emissionRate = 0;
                     }
