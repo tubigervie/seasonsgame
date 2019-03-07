@@ -139,7 +139,7 @@ Grid:
   m_GameObject: {fileID: 672877924}
   m_Enabled: 1
   m_CellSize: {x: 1, y: 1, z: 0}
-  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellGap: {x: -0.015, y: -0.015, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
 --- !u!4 &672877926
@@ -358,7 +358,11 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
+<<<<<<< HEAD
   m_ChunkCullingBounds: {x: 0.041666687, y: 0.041666687, z: 0}
+=======
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+>>>>>>> 11aba65752ae34fa495a9823d71ffeb8ad6ba1cb
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
