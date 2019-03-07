@@ -5,17 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject instructionUI;
+
+    void update()
+    {
+        
+    }
+
     public void RestartGame()
     {
     	PauseMenu.gameIsPaused = false;
     	Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
     }
 
     public void QuitGame()
     {
     	Debug.Log("Quit");
     	Application.Quit();
+    }
+
+    public void loadLevel1()
+    {
+        SceneManager.LoadScene("Level1");
+    }
+
+    public void showInstruction()
+    {
+        instructionUI.SetActive(true);
+    }
+
+    public void hideInstruction()
+    {
+        instructionUI.SetActive(false);
     }
 }
