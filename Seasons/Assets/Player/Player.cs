@@ -301,7 +301,7 @@ public class Player : MonoBehaviour
                     Vector3 dir = hit3d - transform.position;
                     velocity = dir.normalized * 15f;
                 }
-                if (vineGrapplePointObject != null && ((controller.collisions.above || controller.collisions.right || controller.collisions.left) || distance > grappleDistance))
+                if (vineGrapplePointObject != null && ((controller.collisions.above || controller.collisions.right || controller.collisions.left) || distance > grappleDistance || (controller.collisions.below && distance < 3)))
                 {
                     vineGrapplePointObject = null;
                     vine.enabled = false;
