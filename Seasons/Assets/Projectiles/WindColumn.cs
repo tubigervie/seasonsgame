@@ -20,16 +20,12 @@ public class WindColumn : MonoBehaviour
 
     private void Start()
     {
-        durationTimer = .4f;
+        durationTimer = .2f;
         windPool.Add(this);
     }
 
     public static void DecrementWindCount()
     {
-        for (int i = 0; i < windPool.Count; ++i)
-            Destroy(windPool[i].gameObject);
-
-        windPool.Clear();
         windColumnCount = 0;
     }
 
