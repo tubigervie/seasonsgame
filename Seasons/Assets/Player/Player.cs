@@ -69,6 +69,7 @@ public class Player : MonoBehaviour
         if (PauseMenu.gameIsPaused)
             return;
         HandlePlayerMovement();
+        LevelManager.singleton.HighlightGrappleObjects(transform.position, grappleDistance);
         HandleStanceSwitch();
         HandleSpellCasting();
         HandleCooldowns();

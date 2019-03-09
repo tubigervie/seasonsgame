@@ -55,4 +55,24 @@ public class LevelManager : MonoBehaviour
         }
         return closestTarget;
     }
+
+    public void HighlightGrappleObjects(Vector3 position, float minDistance)
+    {
+        float min = minDistance;
+        for (int i = 0; i < grappleObjects.Count; i++)
+        {
+            float distance = Vector3.Distance(position, grappleObjects[i].transform.position);
+            if (grappleObjects[i].canGrapple && distance < min && !grappleObjects[i].isHighlighted)
+            {
+                min = distance;
+                grappleObjects[i].UpdateOutline(true);
+                grappleObjects[i].isHighlighted = true;
+            }
+            else if ((!grappleObjects[i].canGrapple || distance > min) && grappleObjects[i].isHighlighted)
+            {
+                grappleObjects[i].UpdateOutline(false);
+                grappleObjects[i].isHighlighted = false;
+            }
+        }
+    }
 }
