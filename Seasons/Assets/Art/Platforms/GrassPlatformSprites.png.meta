@@ -1,10 +1,14 @@
 fileFormatVersion: 2
-guid: 45e6000182dbcc94281823c3687467ff
+guid: a50ce959cb49cf0468ae26304e8f91a5
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Level_Design_Seasonsgame_0
-    21300002: Level_Design_Seasonsgame_1
-    21300004: Level_Design_Seasonsgame_2
+    21300000: GrassPlatformSprites_0
+    21300002: GrassPlatformSprites_1
+    21300004: GrassPlatformSprites_2
+    21300006: GrassPlatformSprites_3
+    21300008: GrassPlatformSprites_4
+    21300010: GrassPlatformSprites_5
+    21300012: GrassPlatformSprites_6
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -48,7 +52,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 60
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -98,61 +102,141 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Level_Design_Seasonsgame_0
+      name: GrassPlatformSprites_0
       rect:
         serializedVersion: 2
-        x: 1918
-        y: 0
-        width: 637
-        height: 3002
+        x: 5
+        y: 10
+        width: 60
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54fe2ee3f85683b48a94dbd6355718d0
+      spriteID: 91bfd2940c96f7948bf1cfc8ed4e3541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Level_Design_Seasonsgame_1
+      name: GrassPlatformSprites_1
       rect:
         serializedVersion: 2
-        x: 1211
-        y: 0
-        width: 702
-        height: 3002
+        x: 70
+        y: 10
+        width: 60
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 708d0415b1a8cd6429b49c9eeb45cc9f
+      spriteID: f5b0f713dc80fcd498676841307e09cc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Level_Design_Seasonsgame_2
+      name: GrassPlatformSprites_2
       rect:
         serializedVersion: 2
-        x: 620
-        y: 0
-        width: 542
-        height: 3002
+        x: 135
+        y: 10
+        width: 60
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51583ebfe5d3308498affe713f2a2fe7
+      spriteID: 270fba7807f6eb0489b1fadef21d6c2d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrassPlatformSprites_3
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 10
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9de29f07f583cd42b202337b6a1cfb5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrassPlatformSprites_4
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 10
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: befa68465910b7347a962b87711be0dd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrassPlatformSprites_5
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 10
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b53a5425afcdbdb4ebd28ab6b0680f56
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrassPlatformSprites_6
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 10
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ffa2dc37133a7744acc148d05ca432c
       vertices: []
       indices: 
       edges: []
@@ -160,7 +244,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1a695db7554ef0c419fe0cb05b4b9d1b
+    spriteID: e54e5bbd0479c4e4b8eb70ed6f856a97
     vertices: []
     indices: 
     edges: []
