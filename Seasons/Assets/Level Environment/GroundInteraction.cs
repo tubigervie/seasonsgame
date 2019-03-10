@@ -39,7 +39,11 @@ public class GroundInteraction : MonoBehaviour
     private void Update()
     {
         progress_bar.value = Calculate_progress();
-        progress_text.text = "Sprouts Grown: " + progression + " /35";
+        progress_text.text = "Sprouts Grown: " + progression + " /" + total_sprouts;
+        if(progression > total_sprouts)
+        {
+            progress_text.text = "Objective Reached!";
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
