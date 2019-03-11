@@ -6,6 +6,8 @@ public class WindColumn : MonoBehaviour
 {
     public static int windColumnCount;
     [SerializeField] float durationTimer;
+    [SerializeField] AudioClip windSFX;
+    [SerializeField] [Range(0, 1)] float abilityVolume = .1f;
     static List<WindColumn> windPool = new List<WindColumn>();
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,7 +22,8 @@ public class WindColumn : MonoBehaviour
 
     private void Start()
     {
-        durationTimer = .2f;
+        durationTimer = .4f;
+        AudioManager.singleton.PlaySoundEffect(windSFX, abilityVolume);
         windPool.Add(this);
     }
 

@@ -8,15 +8,18 @@ public class IcePillar : MonoBehaviour, IFlammable
     SpriteRenderer sprite;
     PolygonCollider2D collider;
     ParticleSystem particleLoop;
+    [SerializeField] AudioClip iceSFX;
     [SerializeField] GameObject particleBurst;
     [SerializeField] GameObject steamParticles;
     GameObject collidedObject;
     Vector3 collidedObjectInitialPosition;
+    [SerializeField] [Range(0, 1)] float abilityVolume = .1f;
     bool isStatic;
     public float projectileSpeed = 10f;
 
     public void Init(bool isLeft = false)
     {
+        GetComponent<AudioSource>().PlayOneShot(iceSFX, abilityVolume);
         particleLoop = GetComponentInChildren<ParticleSystem>();
         sprite = GetComponent<SpriteRenderer>();
         collider = GetComponent<PolygonCollider2D>();
@@ -39,6 +42,7 @@ public class IcePillar : MonoBehaviour, IFlammable
                 collidedObjectInitialPosition = collidedObject.transform.position;
                 rigid.bodyType = RigidbodyType2D.Static;
                 particleLoop.Stop();
+                GetComponent<AudioSource>().PlayOneShot(iceSFX, abilityVolume);
                 particleBurst.SetActive(true);
                 Destroy(this.gameObject, 10f);
             }
