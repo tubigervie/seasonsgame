@@ -219,7 +219,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 1
-        value: 0.50119096
+        value: 0.35719377
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -486,6 +486,7 @@ MonoBehaviour:
   fireSFX: {fileID: 8300000, guid: d59fa9bd9a079d940be7e17ceb5fa08d, type: 3}
   vineSFX: {fileID: 8300000, guid: f9e5b5d5d6be4314aa3ef2f2f4915cc6, type: 3}
   jumpSFX: {fileID: 8300000, guid: 8c8a227e9636d5c4e863395beb2dcc90, type: 3}
+  stanceSFX: {fileID: 8300000, guid: 8d99a6ea99a0cac4f9891095d2a2e63d, type: 3}
 --- !u!50 &3690337209339949423
 Rigidbody2D:
   serializedVersion: 4

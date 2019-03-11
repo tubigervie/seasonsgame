@@ -304,9 +304,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 496538728405996067, guid: 435b3b1baa5b9774c9157d8abf75ce18,
         type: 3}
-      propertyPath: grappleObjects.Array.size
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: startPoint
+      value: 
+      objectReference: {fileID: 2076126465}
     - target: {fileID: 496538728405996067, guid: 435b3b1baa5b9774c9157d8abf75ce18,
         type: 3}
       propertyPath: grappleObjects.Array.data[0]
@@ -322,21 +322,6 @@ PrefabInstance:
       propertyPath: grappleObjects.Array.data[2]
       value: 
       objectReference: {fileID: 978918412}
-    - target: {fileID: 496538728405996067, guid: 435b3b1baa5b9774c9157d8abf75ce18,
-        type: 3}
-      propertyPath: startPoint
-      value: 
-      objectReference: {fileID: 2076126465}
-    - target: {fileID: 496538728405996067, guid: 435b3b1baa5b9774c9157d8abf75ce18,
-        type: 3}
-      propertyPath: health
-      value: 
-      objectReference: {fileID: 1565548432}
-    - target: {fileID: 496538728405996067, guid: 435b3b1baa5b9774c9157d8abf75ce18,
-        type: 3}
-      propertyPath: deathSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: d22fcd518a421164d867befec20fde18, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 435b3b1baa5b9774c9157d8abf75ce18, type: 3}
 --- !u!1001 &211666486
@@ -538,108 +523,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312958433}
   m_CullTransparentMesh: 0
---- !u!1 &369767815 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 496538728405996065, guid: 435b3b1baa5b9774c9157d8abf75ce18,
-    type: 3}
-  m_PrefabInstance: {fileID: 199327083}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &369767816
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 369767815}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 80b9ed3390872fe4aa929c0b0100306d, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.4
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &428019346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7630892666617725993, guid: 6788d0b447b4bd44e8a5fa12c0ec5e5b,
@@ -15407,21 +15290,6 @@ PrefabInstance:
       propertyPath: vineParticles
       value: 
       objectReference: {fileID: 595796755}
-    - target: {fileID: 3690337209339949419, guid: 7444537748f9868448cbd4e062b6e59e,
-        type: 3}
-      propertyPath: stanceSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 8d99a6ea99a0cac4f9891095d2a2e63d, type: 3}
-    - target: {fileID: 3690337208809866386, guid: 7444537748f9868448cbd4e062b6e59e,
-        type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3690337208809866386, guid: 7444537748f9868448cbd4e062b6e59e,
-        type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.35719377
-      objectReference: {fileID: 0}
     - target: {fileID: 233518503, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
       propertyPath: tile_go
       value: 
