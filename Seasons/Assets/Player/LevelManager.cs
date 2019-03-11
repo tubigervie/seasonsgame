@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
         player.velocity = Vector3.zero;
         player.gameObject.SetActive(false);
         CameraManager.singleton.enabled = false;
+        AudioManager.singleton.TurnOffLoop();
         yield return new WaitForSeconds(.5f);
         player.transform.position = currentCheckpoint.transform.position;
         player.gameObject.SetActive(true);

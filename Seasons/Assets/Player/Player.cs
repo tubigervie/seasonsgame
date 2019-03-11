@@ -44,6 +44,10 @@ public class Player : MonoBehaviour
     int maxWindZones = 1;
     float vineTimer;
 
+    [SerializeField] AudioClip fireSFX;
+    [SerializeField] AudioClip vineSFX;
+    [SerializeField] AudioClip jumpSFX;
+
     public static Player singleton;
 
     private void Awake()
@@ -109,6 +113,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
         {
+            AudioManager.singleton.PlaySoundEffect(jumpSFX, 1);
             velocity.y = maxJumpVelocity;
         }
 
@@ -134,6 +139,8 @@ public class Player : MonoBehaviour
             stance = StanceType.fall;
         if(stance != prevStance)
         {
+            if(prevStance == StanceType.summer)
+                AudioManager.singleton.TurnOffLoop();
             if (fireConePrefab.activeInHierarchy)
                 fireConePrefab.SetActive(false);
             controller.anim.SetBool("isCastingLoop", false);
@@ -175,6 +182,7 @@ public class Player : MonoBehaviour
                     controller.anim.SetBool("isCastingLoop", true);
                     if (!fireConePrefab.activeInHierarchy)
                     {
+                        AudioManager.singleton.PlayLoopSoundEffect(fireSFX);
                         fireConePrefab.SetActive(true);
                         smokeParticles.emissionRate = 15;
                     }
@@ -184,6 +192,7 @@ public class Player : MonoBehaviour
                     if (fireConePrefab.activeInHierarchy)
                     {
                         controller.anim.SetBool("isCastingLoop", false);
+                        AudioManager.singleton.TurnOffLoop();
                         fireConePrefab.SetActive(false);
                         smokeParticles.emissionRate = 0;
                     }
@@ -245,6 +254,7 @@ public class Player : MonoBehaviour
             canGrapple = false;
             float distance = Vector3.Distance(vineGrapplePoint.transform.position, transform.position);
             vineGrapplePointObject = vineGrapplePoint.gameObject;
+            AudioManager.singleton.PlaySoundEffect(vineSFX, 1);
             if (distance < grappleDistance)
             {
                 vine.SetPosition(0, transform.position);
@@ -318,6 +328,7 @@ public class Player : MonoBehaviour
         else
         {
             vineTimer = .3f;
+            AudioManager.singleton.PlaySoundEffect(vineSFX, 1);
             while (vineTimer > 0)
             {
                 canGrapple = false;
