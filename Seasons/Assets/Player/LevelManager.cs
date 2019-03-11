@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     public GameObject currentCheckpoint;
     Player player;
     public List<GrappleObject> grappleObjects = new List<GrappleObject>();
+    [SerializeField] AudioClip deathSFX;
 
     private void Awake()
     {
@@ -31,10 +32,11 @@ public class LevelManager : MonoBehaviour
     public IEnumerator DieRespawn()
     {
         player.ResetAbilities();
+        AudioManager.singleton.TurnOffLoop();
+        AudioManager.singleton.PlaySoundEffect(deathSFX, 1);
         player.velocity = Vector3.zero;
         player.gameObject.SetActive(false);
         CameraManager.singleton.enabled = false;
-        AudioManager.singleton.TurnOffLoop();
         yield return new WaitForSeconds(.5f);
         player.transform.position = currentCheckpoint.transform.position;
         player.gameObject.SetActive(true);

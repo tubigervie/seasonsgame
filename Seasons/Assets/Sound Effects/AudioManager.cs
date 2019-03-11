@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySoundEffect(AudioClip sound, float volume)
     {
         soundEffects.PlayOneShot(sound, volume);
+        Debug.Log("should play");
     }
 
     public void PlayLoopSoundEffect(AudioClip sound)

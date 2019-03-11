@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip fireSFX;
     [SerializeField] AudioClip vineSFX;
     [SerializeField] AudioClip jumpSFX;
+    [SerializeField] AudioClip stanceSFX;
 
     public static Player singleton;
 
@@ -141,6 +142,7 @@ public class Player : MonoBehaviour
         {
             if(prevStance == StanceType.summer)
                 AudioManager.singleton.TurnOffLoop();
+            AudioManager.singleton.PlaySoundEffect(stanceSFX, .3f);
             if (fireConePrefab.activeInHierarchy)
                 fireConePrefab.SetActive(false);
             controller.anim.SetBool("isCastingLoop", false);

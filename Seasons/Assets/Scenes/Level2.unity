@@ -332,6 +332,11 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 1565548432}
+    - target: {fileID: 496538728405996067, guid: 435b3b1baa5b9774c9157d8abf75ce18,
+        type: 3}
+      propertyPath: deathSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d22fcd518a421164d867befec20fde18, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 435b3b1baa5b9774c9157d8abf75ce18, type: 3}
 --- !u!1001 &211666486
@@ -15402,12 +15407,11 @@ PrefabInstance:
       propertyPath: vineParticles
       value: 
       objectReference: {fileID: 595796755}
-<<<<<<< HEAD
-    - target: {fileID: 3690337209339949422, guid: 7444537748f9868448cbd4e062b6e59e,
+    - target: {fileID: 3690337209339949419, guid: 7444537748f9868448cbd4e062b6e59e,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: stanceSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d99a6ea99a0cac4f9891095d2a2e63d, type: 3}
     - target: {fileID: 3690337208809866386, guid: 7444537748f9868448cbd4e062b6e59e,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
@@ -15418,7 +15422,6 @@ PrefabInstance:
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
       value: 0.35719377
       objectReference: {fileID: 0}
-=======
     - target: {fileID: 233518503, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
       propertyPath: tile_go
       value: 
@@ -15431,7 +15434,6 @@ PrefabInstance:
       propertyPath: progress_text
       value: 
       objectReference: {fileID: 312958435}
->>>>>>> ea788da98d8fe69b63e0ddb8149a9bfcd3548901
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
 --- !u!114 &910182877 stripped
