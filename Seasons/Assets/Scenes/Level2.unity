@@ -15331,6 +15331,11 @@ PrefabInstance:
       propertyPath: vineParticles
       value: 
       objectReference: {fileID: 595796755}
+    - target: {fileID: 3690337209339949422, guid: 7444537748f9868448cbd4e062b6e59e,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3690337208809866386, guid: 7444537748f9868448cbd4e062b6e59e,
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
@@ -15340,11 +15345,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
       value: 0.35719377
-      objectReference: {fileID: 0}
-    - target: {fileID: 3690337209339949422, guid: 7444537748f9868448cbd4e062b6e59e,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
