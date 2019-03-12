@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EndingTransition : MonoBehaviour
 {
+    public string load_scene;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,7 +14,7 @@ public class EndingTransition : MonoBehaviour
             if (collision.gameObject.CompareTag("EndingTree"))
             {
                 StartCoroutine(GameObject.FindObjectOfType<SceneTransition>().FadeAndLoadScene(
-                    SceneTransition.FadeDirection.Out, "Santiago 1"));
+                    SceneTransition.FadeDirection.Out, load_scene));
             }
         }
        
