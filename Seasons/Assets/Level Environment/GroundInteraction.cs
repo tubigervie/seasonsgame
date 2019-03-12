@@ -7,10 +7,13 @@ using UnityEngine.UI;
 
 public class GroundInteraction : MonoBehaviour
 {
+    public static Player singleton;
+
     Tilemap tilemap;
     public GameObject tile_go;
-    public GameObject grass_obj;
-    public int total_sprouts = 35;
+    public GameObject element_obj;
+    public string element_type = "Snowflakes Made: ";
+    public int total_elements = 35;
     public float progression = 0f;
     private List<float> positions = new List<float>();
     ContactPoint2D[] contacts = new ContactPoint2D[2];
@@ -18,6 +21,8 @@ public class GroundInteraction : MonoBehaviour
 
     public Slider progress_bar;
     public Text progress_text;
+
+
 
 
     private void Start()
@@ -29,18 +34,46 @@ public class GroundInteraction : MonoBehaviour
         x_pos_min = this.gameObject.transform.position.x;
         x_pos_max = this.gameObject.transform.position.x;
         progress_bar.value = Calculate_progress();
+        
+
     }
 
-    private float Calculate_progress()
+    private void SetName()
     {
-        return progression / total_sprouts;
+        if (element_obj)
+        {
+            switch (element_obj.name)
+            {
+                case "Snow_Obj":
+                    element_type = "Snowflakes Made: ";
+                    break;
+                case "Sprout_Obj":
+                    element_type = "Sprouts Grown: ";
+                    break;
+                case "Fall_Obj":
+                    element_type = "Leaves Dropped: ";
+                    break;
+                case "Sun_Obj":
+                    element_type = "Suns Made: ";
+                    break;
+                default:
+                    element_type = "Elements Made: ";
+                    break;
+            }
+        }
+    }
+
+    public float Calculate_progress()
+    {
+        return progression / total_elements;
     }
 
     private void Update()
     {
         progress_bar.value = Calculate_progress();
-        progress_text.text = "Sprouts Grown: " + progression + " /" + total_sprouts;
-        if(progression > total_sprouts)
+        
+        progress_text.text = element_type + progression + " /" + total_elements;
+        if(progression > total_elements)
         {
             progress_text.text = "Objective Reached!";
         }
@@ -48,7 +81,7 @@ public class GroundInteraction : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") && !Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.Mouse0) && Player.singleton.controller.collisions.below)
         {
             Vector3 current_pos = this.gameObject.transform.position;
   
@@ -58,7 +91,8 @@ public class GroundInteraction : MonoBehaviour
                 x_pos_min = current_pos.x;
                 positions.Add(current_pos.y);
                 current_pos.y -= .1f;
-                Instantiate(grass_obj, current_pos, Quaternion.identity);
+                Instantiate(element_obj, current_pos, Quaternion.identity);
+                SetName();
                 progression += 1;
 
             }else if (current_pos.x > x_pos_max + 2)
@@ -66,7 +100,8 @@ public class GroundInteraction : MonoBehaviour
                 x_pos_max = current_pos.x;
                 positions.Add(current_pos.y);
                 current_pos.y -= .1f;
-                Instantiate(grass_obj, current_pos, Quaternion.identity);
+                Instantiate(element_obj, current_pos, Quaternion.identity);
+                SetName();
                 progression += 1;
 
             }
