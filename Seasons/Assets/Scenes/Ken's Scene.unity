@@ -3822,6 +3822,11 @@ PrefabInstance:
       propertyPath: total_elements
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 233518503, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
+      propertyPath: element_obj
+      value: 
+      objectReference: {fileID: 6878120848781561880, guid: abfe83e90123383449360ee7690874ab,
+        type: 3}
     - target: {fileID: 1228973956, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
       propertyPath: load_scene
       value: Cassie's Scene

@@ -1615,6 +1615,11 @@ PrefabInstance:
       propertyPath: tile_go
       value: 
       objectReference: {fileID: 1161560882}
+    - target: {fileID: 233518503, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
+      propertyPath: element_obj
+      value: 
+      objectReference: {fileID: 6878120848781561880, guid: e25dfb1a9b381644ababee111c3b8a1a,
+        type: 3}
     - target: {fileID: 1228973956, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
       propertyPath: load_scene
       value: Ken's Scene
