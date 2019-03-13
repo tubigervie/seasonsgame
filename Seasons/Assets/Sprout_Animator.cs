@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sprout_Animator : MonoBehaviour
 {
+    public static bool gameIsPaused = false;
     private float rate = 1f;
 
     private void Start()
@@ -21,8 +22,9 @@ public class Sprout_Animator : MonoBehaviour
     private IEnumerator Scaling()
     {
         var time = 0.0;
-        while (time < 1.0)
+        while (time < 1.0 && Time.timeScale > 0)
         {
+
             time += Time.deltaTime * rate;
             this.transform.localScale += new Vector3(0.007f, 0.007f, 0);
             yield return null;
@@ -33,12 +35,40 @@ public class Sprout_Animator : MonoBehaviour
     private IEnumerator Growing()
     {
         var time = 0.0;
-        while (time < 1.0)
+        while (time < 1.0 && Time.timeScale > 0)
         {
+           
             time += Time.deltaTime * rate;
             this.transform.position += new Vector3(0f, 0.005f, 0);
             yield return null;
 
         }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        gameIsPaused = false;
+    }
+
+    void Pause()
+    {
+        Time.timeScale = 0f;
+        gameIsPaused = true;
     }
 }
