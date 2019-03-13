@@ -27,7 +27,12 @@ public class GameManager : MonoBehaviour
 
     public void loadLevel1()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Santiago 1");
+    }
+
+    public void loadTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void showInstruction()

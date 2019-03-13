@@ -11,7 +11,7 @@ public class EndingTrees : MonoBehaviour
     //private Texture2D stored_image;
    // public Player reference;
     //public GameObject thisobject;
-    public float objective = 35f;
+    public float objective = 30f;
     private float progression = 0f;
     public Text restore;
     private Text info;

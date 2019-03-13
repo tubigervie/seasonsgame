@@ -11,7 +11,25 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Prototype Scenes/MAIN SCENE.unity
     guid: f44310ede2738d54f8684ba946bc7705
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level1.unity
     guid: a4551cc0513b1ad42889c5be2a28ee08
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 79dd7eb04c749f84ebd82459111bf72a
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 6326c85f3daca7a4594050a58a36f955
+  - enabled: 1
+    path: Assets/Scenes/Santiago 1.unity
+    guid: 3098d0565840072488989e091e642b35
+  - enabled: 1
+    path: Assets/Scenes/Cassie's Scene.unity
+    guid: bc75bd5511b0ad2478f2ecd444880e58
+  - enabled: 1
+    path: Assets/Scenes/Santiago 2.unity
+    guid: e36c7bc7d0e14444c8af86311b1987cb
+  - enabled: 1
+    path: Assets/Scenes/Ken's Scene.unity
+    guid: 8e61e1e8b68c4a347ba952c5431d8ad2
   m_configObjects: {}

@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class SkillUIMask : MonoBehaviour
 {
     public Image Image;
+    public Transform fall;
+    public Transform summer;
+    public Transform spring;
+    public Transform winter;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,27 +25,26 @@ public class SkillUIMask : MonoBehaviour
         {
 
             Image.rectTransform.localScale = new Vector3(1f, 1f, 1f);
-            Image.rectTransform.position = new Vector3(26f, Image.rectTransform.position.y, Image.rectTransform.position.z);
+            Image.rectTransform.position = winter.position;
 
         }else if(stance == Color.green)
         {
             Image.rectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-            Image.rectTransform.position = new Vector3(65.5f, Image.rectTransform.position.y, Image.rectTransform.position.z);
+            Image.rectTransform.position = spring.position;
 
         }
         else if(stance == Color.red)
         {
             Image.rectTransform.localScale = new Vector3(1f, 1f, 1f);
 
-            Image.rectTransform.position = new Vector3(105f, Image.rectTransform.position.y, Image.rectTransform.position.z);
+            Image.rectTransform.position = summer.position;
 
         }
         else if(stance == Color.yellow)
         {
             Image.rectTransform.localScale = new Vector3(1f, 1f, 1f);
 
-            Image.rectTransform.position = new Vector3(144f, Image.rectTransform.position.y, Image.rectTransform.position.z);
+            Image.rectTransform.position = fall.position;
 
         }
         else
