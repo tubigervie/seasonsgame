@@ -9,7 +9,13 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        singleton = this;
+        if (singleton == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            singleton = this;
+        }
+        else
+            Destroy(this.gameObject);
     }
 
     void Start()
@@ -27,6 +33,7 @@ public class AudioManager : MonoBehaviour
     {
         soundEffects.loop = true;
         soundEffects.clip = sound;
+        soundEffects.volume = .5f;
         soundEffects.Play();
     }
 

@@ -81,7 +81,7 @@ public class GroundInteraction : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") && !Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.Mouse0) && Player.singleton.controller.collisions.below)
+        if (collision.gameObject.CompareTag("Ground") && !Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.Mouse0) && Player.singleton.controller.collisions.below && !(Player.singleton.controller.collisions.right || Player.singleton.controller.collisions.left))
         {
             Vector3 current_pos = this.gameObject.transform.position;
   

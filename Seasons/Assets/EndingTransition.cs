@@ -13,8 +13,8 @@ public class EndingTransition : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("EndingTree"))
             {
-                StartCoroutine(GameObject.FindObjectOfType<SceneTransition>().FadeAndLoadScene(
-                    SceneTransition.FadeDirection.Out, load_scene));
+                MusicManager.singleton.isPlayingLevelTrack = false;
+                GameManager.singleton.StartCoroutine(GameManager.singleton.FadeInToScene(load_scene));
             }
         }
        

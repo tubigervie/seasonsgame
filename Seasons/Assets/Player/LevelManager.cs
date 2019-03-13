@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     Player player;
     public List<GrappleObject> grappleObjects = new List<GrappleObject>();
     [SerializeField] AudioClip deathSFX;
+    [SerializeField] AudioClip levelOST;
+    [SerializeField] float levelVolume = .1f;
 
     private void Awake()
     {
@@ -19,8 +21,22 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PauseMenu.gameIsPaused = true;
         player = Player.singleton;
         currentCheckpoint = startPoint;
+        if (!MusicManager.singleton.isPlayingLevelTrack)
+            StartCoroutine("PlayLevelMusic");
+        else
+            PauseMenu.gameIsPaused = false;
+    }
+
+    private IEnumerator PlayLevelMusic()
+    {
+        yield return new WaitForSeconds(.5f);
+        MusicManager.singleton.PlayTrack(levelOST);
+        MusicManager.singleton.StartCoroutine(MusicManager.singleton.FadeInTrack(levelVolume));
+        MusicManager.singleton.isPlayingLevelTrack = true;
+        PauseMenu.gameIsPaused = false;
     }
 
     // Update is called once per frame
@@ -33,7 +49,7 @@ public class LevelManager : MonoBehaviour
     {
         player.ResetAbilities();
         AudioManager.singleton.TurnOffLoop();
-        AudioManager.singleton.PlaySoundEffect(deathSFX, 1);
+        AudioManager.singleton.PlaySoundEffect(deathSFX, .3f);
         player.velocity = Vector3.zero;
         player.gameObject.SetActive(false);
         CameraManager.singleton.enabled = false;

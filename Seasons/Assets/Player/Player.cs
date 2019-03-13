@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
         {
-            AudioManager.singleton.PlaySoundEffect(jumpSFX, 1);
+            AudioManager.singleton.PlaySoundEffect(jumpSFX, .6f);
             velocity.y = maxJumpVelocity;
         }
 
@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
         {
             if(prevStance == StanceType.summer)
                 AudioManager.singleton.TurnOffLoop();
-            AudioManager.singleton.PlaySoundEffect(stanceSFX, .3f);
+            AudioManager.singleton.PlaySoundEffect(stanceSFX, .1f);
             if (fireConePrefab.activeInHierarchy)
                 fireConePrefab.SetActive(false);
             controller.anim.SetBool("isCastingLoop", false);
@@ -256,7 +256,7 @@ public class Player : MonoBehaviour
             canGrapple = false;
             float distance = Vector3.Distance(vineGrapplePoint.transform.position, transform.position);
             vineGrapplePointObject = vineGrapplePoint.gameObject;
-            AudioManager.singleton.PlaySoundEffect(vineSFX, 1);
+            AudioManager.singleton.PlaySoundEffect(vineSFX, .4f);
             if (distance < grappleDistance)
             {
                 vine.SetPosition(0, transform.position);
@@ -330,7 +330,7 @@ public class Player : MonoBehaviour
         else
         {
             vineTimer = .3f;
-            AudioManager.singleton.PlaySoundEffect(vineSFX, 1);
+            AudioManager.singleton.PlaySoundEffect(vineSFX, .4f);
             while (vineTimer > 0)
             {
                 canGrapple = false;
