@@ -6,11 +6,13 @@ public class enemy : MonoBehaviour
 {
     public float speed;
     private Transform target;
+    Vector3 originalPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        originalPosition = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -27,8 +29,9 @@ public class enemy : MonoBehaviour
             speed = 0;
             StartCoroutine(Wait());
             LevelManager.singleton.StartCoroutine("DieRespawn");
+            gameObject.transform.position = originalPosition;
         }
-        if(collision.gameObject.name == "Fire")
+        if(collision.gameObject.name == "Fire" || collision.gameObject.name.StartsWith("Ice Pillar"))
         {
             Destroy(gameObject);
         }
