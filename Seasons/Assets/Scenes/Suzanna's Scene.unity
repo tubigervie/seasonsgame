@@ -343,7 +343,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1336635872}
-        m_MethodName: loadTutorial
+        m_MethodName: loadIntroCutscene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

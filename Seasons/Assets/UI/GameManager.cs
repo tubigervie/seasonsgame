@@ -42,6 +42,12 @@ public class GameManager : MonoBehaviour
     	Application.Quit();
     }
 
+    public void loadIntroCutscene()
+    {
+        StartCoroutine(FadeInToScene("IntroVideo"));
+        dontShowFade = true;
+    }
+
     public void loadLevel1()
     {
         SceneManager.LoadScene("Santiago 1");
