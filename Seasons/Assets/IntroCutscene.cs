@@ -5,8 +5,8 @@ using UnityEngine.Video;
 
 public class IntroCutscene : MonoBehaviour
 {
-    float currentTime;
-    [SerializeField] float videoTime;
+    double currentTime;
+    [SerializeField] double videoTime = .44f;
     VideoPlayer video;
     // Start is called before the first frame update
     void Start()
