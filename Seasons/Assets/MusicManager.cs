@@ -33,6 +33,8 @@ public class MusicManager : MonoBehaviour
 
     public IEnumerator FadeInTrack(float levelVolume)
     {
+        music.Stop();
+        music.Play();
         music.volume = 0;
         for (float i = 0; i <= levelVolume; i += Time.deltaTime / 2f)
         {

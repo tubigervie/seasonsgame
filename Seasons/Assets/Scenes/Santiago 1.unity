@@ -2084,6 +2084,10 @@ PrefabInstance:
       propertyPath: progress_text
       value: 
       objectReference: {fileID: 659832008}
+    - target: {fileID: 233518503, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
+      propertyPath: total_elements
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3690337209339949422, guid: 7444537748f9868448cbd4e062b6e59e,
         type: 3}
       propertyPath: m_IsTrigger
@@ -2170,7 +2174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9469f5bc15e98834fbd8d2dba816e79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  load_scene: Santiago 2
+  load_scene: Cassie's Scene
 --- !u!1001 &362167674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6043,6 +6047,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.23704779
+      objectReference: {fileID: 0}
+    - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 447301965918780680, guid: 9d69c23198899ab4e99038dc19fc8308,
         type: 3}
@@ -14018,6 +14032,11 @@ PrefabInstance:
       propertyPath: restore
       value: 
       objectReference: {fileID: 1720307226}
+    - target: {fileID: 3881672602707061952, guid: ae8ed42a98267554c9e36d980614bb6e,
+        type: 3}
+      propertyPath: objective
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae8ed42a98267554c9e36d980614bb6e, type: 3}
 --- !u!4 &2055183339 stripped

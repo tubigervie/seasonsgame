@@ -13,7 +13,7 @@ public class IntroCutscene : MonoBehaviour
     {
         video = GetComponent<VideoPlayer>();
         videoTime = video.clip.length;
-        MusicManager.singleton.StartCoroutine(MusicManager.singleton.FadeInTrack(.2f));
+        //MusicManager.singleton.StartCoroutine(MusicManager.singleton.FadeInTrack(.2f));
     }
 
     // Update is called once per frame

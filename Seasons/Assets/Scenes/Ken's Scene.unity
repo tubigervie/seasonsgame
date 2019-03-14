@@ -690,7 +690,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelOST
       value: 
-      objectReference: {fileID: 8300000, guid: c6b18e58ac29ebd4193a9939589001af, type: 3}
+      objectReference: {fileID: 8300000, guid: 7af5b40cd4888c646b8643deafc093c0, type: 3}
     - target: {fileID: 496538728405996067, guid: 435b3b1baa5b9774c9157d8abf75ce18,
         type: 3}
       propertyPath: levelVolume
@@ -1174,22 +1174,32 @@ PrefabInstance:
     - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
         type: 3}
       propertyPath: m_Text
-      value: FALL
+      value: WINTER
       objectReference: {fileID: 0}
     - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
         type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.67668825
+      value: 0.9638109
       objectReference: {fileID: 0}
     - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
         type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d69c23198899ab4e99038dc19fc8308, type: 3}
@@ -3013,7 +3023,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300002, guid: 0e1f9779c9591e84c9a70b67b1f3b11e,
+      objectReference: {fileID: 21300004, guid: 0e1f9779c9591e84c9a70b67b1f3b11e,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 201481c5c86e8684ea4fa5b074da952d, type: 3}
@@ -3825,11 +3835,15 @@ PrefabInstance:
     - target: {fileID: 233518503, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
       propertyPath: element_obj
       value: 
-      objectReference: {fileID: 6878120848781561880, guid: abfe83e90123383449360ee7690874ab,
+      objectReference: {fileID: 6878120848781561880, guid: 6307aa9e6e717e04aa624caeceb9b6d4,
         type: 3}
+    - target: {fileID: 233518503, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
+      propertyPath: element_type
+      value: 'Snowflakes made: '
+      objectReference: {fileID: 0}
     - target: {fileID: 1228973956, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
       propertyPath: load_scene
-      value: Cassie's Scene
+      value: Suzanna's Scene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
@@ -5790,7 +5804,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300002, guid: 0e1f9779c9591e84c9a70b67b1f3b11e,
+      objectReference: {fileID: 21300004, guid: 0e1f9779c9591e84c9a70b67b1f3b11e,
         type: 3}
     - target: {fileID: 3881672602707061952, guid: ae8ed42a98267554c9e36d980614bb6e,
         type: 3}

@@ -528,6 +528,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1875186301617420142, guid: 201481c5c86e8684ea4fa5b074da952d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e1f9779c9591e84c9a70b67b1f3b11e,
+        type: 3}
     - target: {fileID: 1875186301617420146, guid: 201481c5c86e8684ea4fa5b074da952d,
         type: 3}
       propertyPath: m_BodyType
@@ -620,11 +626,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3881672602707061955, guid: ae8ed42a98267554c9e36d980614bb6e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e1f9779c9591e84c9a70b67b1f3b11e,
+        type: 3}
     - target: {fileID: 3881672602707061952, guid: ae8ed42a98267554c9e36d980614bb6e,
         type: 3}
       propertyPath: restore
       value: 
       objectReference: {fileID: 1072785399}
+    - target: {fileID: 3881672602707061952, guid: ae8ed42a98267554c9e36d980614bb6e,
+        type: 3}
+      propertyPath: objective
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae8ed42a98267554c9e36d980614bb6e, type: 3}
 --- !u!1001 &595796754
@@ -14974,6 +14991,10 @@ PrefabInstance:
       propertyPath: progress_text
       value: 
       objectReference: {fileID: 312958435}
+    - target: {fileID: 233518503, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
+      propertyPath: total_elements
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7444537748f9868448cbd4e062b6e59e, type: 3}
 --- !u!114 &910182877 stripped
@@ -15238,17 +15259,27 @@ PrefabInstance:
     - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
         type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.990566
       objectReference: {fileID: 0}
     - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.1273585
+      value: 0.16353682
       objectReference: {fileID: 0}
     - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.938275
+      value: 0.93122774
+      objectReference: {fileID: 0}
+    - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 447301965801747220, guid: 9d69c23198899ab4e99038dc19fc8308,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 447301965918780680, guid: 9d69c23198899ab4e99038dc19fc8308,
         type: 3}

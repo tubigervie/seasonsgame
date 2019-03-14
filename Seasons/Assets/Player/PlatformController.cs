@@ -56,6 +56,8 @@ public class PlatformController : Raycaster
     // Update is called once per frame
     void Update()
     {
+        if (PauseMenu.gameIsPaused)
+            return;
         UpdateRaycastTargets();
         Vector3 velocity = PlatformMovement();
         CalculatePassengerMovement(velocity);

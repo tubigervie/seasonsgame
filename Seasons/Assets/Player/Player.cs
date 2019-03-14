@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
                 }
                 break;
             case StanceType.summer:
-                if(Input.GetButtonDown("Fire1"))
+                if(Input.GetButton("Fire1"))
                 {
                     controller.anim.SetBool("isCastingLoop", true);
                     if (!fireConePrefab.activeInHierarchy)
@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
                         smokeParticles.emissionRate = 15;
                     }
                 }
-                else if(Input.GetButtonUp("Fire1"))
+                else
                 {
                     if (fireConePrefab.activeInHierarchy)
                     {
@@ -375,6 +375,7 @@ public class Player : MonoBehaviour
             fireConePrefab.SetActive(false);
             smokeParticles.emissionRate = 0;
         }
+        vineGrapplePointObject = null;
         vine.enabled = false;
         canGrapple = true;
         vineParticles.SetActive(false);

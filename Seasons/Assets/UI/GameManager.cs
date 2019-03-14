@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     public void loadIntroCutscene()
     {
-        StartCoroutine(FadeInToScene("IntroVideo"));
+        StartCoroutine(FadeInToScene("IntroVideo", false));
         dontShowFade = true;
     }
 
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator FadeInToScene(string SceneName)
+    public IEnumerator FadeInToScene(string SceneName, bool fadeAudio = true)
     {
         // loop over 1 second
         img.SetActive(true);
@@ -113,7 +113,8 @@ public class GameManager : MonoBehaviour
         for (float i = 0; i <= 1; i += Time.deltaTime)
         {
             // set color with i as alpha
-            MusicManager.singleton.music.volume -= startVolume * Time.deltaTime;
+            if(fadeAudio)
+                MusicManager.singleton.music.volume -= startVolume * Time.deltaTime;
             img.GetComponent<Image>().color = new Color(1, 1, 1, i);
             yield return null;
         }
